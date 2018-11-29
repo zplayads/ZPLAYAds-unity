@@ -23,7 +23,7 @@
 
 1.面向人群
 
-本产品主要面向需要在 Unity 产品中接入玉米移动广告 SDK 的开发人员。
+本产品主要面向需要在 Unity 产品中接 ZPLAYAds SDK 的开发人员。
 
 2.先决条件
 
@@ -42,7 +42,7 @@
 
   Android API 14 或更高版本
 
-3.[Demo 获取地址]()   
+3.[Demo 获取地址](../../Assets)   
 
 ## 下载 ZPLAYAds Unity 插件
 
@@ -64,7 +64,7 @@ ZPLAYAds Unity 插件使 Unity 开发人员可以轻松地在 Android 和 iOS �
 
 ## 集成 ZPLAYAds
 
-ZPLAYAds Unity 插件随着 [Unity Play Services Resolver library](https://github.com/googlesamples/unity-jar-resolver) 一起发布。该库主要供访问 Android 特定库（例如，AAR）或 iOS CocoaPods 的任何 Unity 插件使用。它为 Unity 插件提供了声明依赖关系的能力，然后自动解析并复制到 Unity 项目中。请按照下面列出的步骤确保您的项目包含 ZPLAYAds。
+ZPLAYAds Unity 插件随着 [Unity Play Services Resolver library](https://github.com/googlesamples/unity-jar-resolver) 一起发布。这个库适用于任何需要访问 Android 特定库(例如 AARs)或 iOS CocoaPods 的 Unity 插件。它为 Unity 插件提供了声明依赖关系的能力，然后自动解析并复制到 Unity 项目中。请按照下面列出的步骤确保您的项目包含 ZPLAYAds。
 
 ### 部署 iOS 项目
 
@@ -98,14 +98,14 @@ using ZPLAYAds.Common;
 public class ZPLAYAdsDemoScript : MonoBehaviour
 {
   #if UNITY_ANDROID
-  const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_ANDROID";
-  const string ZPLAYADS_UNIT_ID_INTERSTITIAL = "YOUR_ZPLAYAds_UNIT_ID_INTERSTITIAL_ANDROID";
+   const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_ANDROID";
+   const string ZPLAYADS_UNIT_ID_INTERSTITIAL = "YOUR_ZPLAYAds_UNIT_ID_INTERSTITIAL_ANDROID";
   #elif UNITY_IOS
-  const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_IOS";
-  const string ZPLAYADS_UNIT_ID_INTERSTITIAL = "YOUR_ZPLAYAds_UNIT_ID_INTERSTITIAL_IOS";
+   const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_IOS";
+   const string ZPLAYADS_UNIT_ID_INTERSTITIAL = "YOUR_ZPLAYAds_UNIT_ID_INTERSTITIAL_IOS";
   #else
-  const string ZPLAYADS_APP_ID = "unexpected_platform";
-  const string ZPLAYADS_UNIT_ID_INTERSTITIAL = "unexpected_platform";
+   const string ZPLAYADS_APP_ID = "unexpected_platform";
+   const string ZPLAYADS_UNIT_ID_INTERSTITIAL = "unexpected_platform";
   #endif
 
   InterstitialAd interstitial;
@@ -151,7 +151,7 @@ public class ZPLAYAdsDemoScript : MonoBehaviour
 }
 ```
 
-#### 请求 Interstitial
+#### 请求 Interstitial
 
 如果打开自动请求 ```interstitial.SetAutoloadNext(true)``` 模式，首次请求后，SDK 会在展示完成后或广告请求失败后自动请求下一条广告
 
@@ -186,14 +186,14 @@ using ZPLAYAds.Common;
 public class ZPLAYAdsDemoScript : MonoBehaviour
 {
   #if UNITY_ANDROID
-  const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_ANDROID";
-  const string ZPLAYADS_UNIT_ID_REWARD_VIDEO = "YOUR_ZPLAYAds_UNIT_ID_REWARD_VIDEO_ANDROID";
+   const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_ANDROID";
+   const string ZPLAYADS_UNIT_ID_REWARD_VIDEO = "YOUR_ZPLAYAds_UNIT_ID_REWARD_VIDEO_ANDROID";
   #elif UNITY_IOS
-  const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_IOS";
-  const string ZPLAYADS_UNIT_ID_REWARD_VIDEO = "YOUR_ZPLAYAds_UNIT_ID_REWARD_VIDEO_IOS";
+   const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_IOS";
+   const string ZPLAYADS_UNIT_ID_REWARD_VIDEO = "YOUR_ZPLAYAds_UNIT_ID_REWARD_VIDEO_IOS";
   #else
-  const string ZPLAYADS_APP_ID = "unexpected_platform";
-  const string ZPLAYADS_UNIT_ID_REWARD_VIDEO = "unexpected_platform";
+   const string ZPLAYADS_APP_ID = "unexpected_platform";
+   const string ZPLAYADS_UNIT_ID_REWARD_VIDEO = "unexpected_platform";
   #endif
 
   RewardVideoAd rewardVideo;
