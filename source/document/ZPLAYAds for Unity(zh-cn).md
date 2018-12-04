@@ -1,21 +1,21 @@
 * [ZPLAYAds for Unity](#zplayads-for-unity)
   * [概述](#概述)
-  * [下载 ZPLAYAds Unity 插件](#下载-zplayads-unity-插件)
-  * [导入 ZPLAYAds Unity 插件](#导入-zplayads-unity-插件)
-  * [集成 ZPLAYAds](#集成-zplayads)
-      * [部署 iOS 项目](#部署-ios-项目)
-      * [部署 Android 项目](#部署-android-项目)
+  * [下载ZPLAYAds Unity插件](#下载zplayads-unity插件)
+  * [导入ZPLAYAds Unity插件](#导入zplayads-unity插件)
+  * [集成ZPLAYAds](#集成zplayads)
+      * [部署iOS项目](#部署ios项目)
+      * [部署Android项目](#部署android项目)
   * [选择广告形式](#选择广告形式)
       * [Interstitial](#interstitial)
         * [初始化及请求插屏](#初始化及请求插屏)
-        * [请求 Interstitial](#请求-interstitial)
-        * [判断 Interstitial 是否准备好](#判断-interstitial-是否准备好)
-        * [展示 Interstitial](#展示-interstitial)
+        * [请求Interstitial](#请求interstitial)
+        * [判断Interstitial是否准备好](#判断interstitial是否准备好)
+        * [展示Interstitial](#展示interstitial)
       * [Rewarded Video](#rewarded-video)
         * [初始化及请求视频](#初始化及请求视频)
-        * [请求 Reward Video](#请求-reward-video)
-        * [判断 Revideo Video 是否准备好](#判断-revideo-video-是否准备好)
-        * [展示 Rewarded Video](#展示-rewarded-video)
+        * [请求Rewarded Video](#请求rewarded-video)
+        * [判断Rewarded Video是否准备好](#判断rewarded-video是否准备好)
+        * [展示Rewarded Video](#展示rewarded-video)
 
 # ZPLAYAds for Unity
 
@@ -44,15 +44,11 @@
 
 3.[Demo 获取地址](../../Assets)   
 
-## 下载 ZPLAYAds Unity 插件
+## 下载ZPLAYAds Unity插件
 
-ZPLAYAds Unity 插件使 Unity 开发人员可以轻松地在 Android 和 iOS 应用上展示广告，无需编写 Java 或 Objective-C 代码。该插件提供了一个 C# 接口来请求广告。使用下面的链接下载插件的 Unity 包或在 GitHub 上查看其代码 [Android](../android-library/app/src/main/java/com/zplay/adsunity) [iOS](../../Assets/Plugins/iOS)。
+ZPLAYAds Unity插件使Unity开发人员可以轻松地在 Android 和 iOS 应用上展示广告，无需编写 Java 或 Objective-C 代码。该插件提供了一个 C# 接口来请求广告。您可以[下载ZPLAYAds Unity插件包](./ZPLAYAds.unitypackage)或在GitHub上查看代码。（[Android代码](../android-library/app/src/main/java/com/zplay/adsunity)、[iOS代码](../../Assets/Plugins/iOS)、[查看源码](../../Assets/ZPLAYAds)）
 
-[下载ZPLAYAds Unity插件](./ZPLAYAds.unitypackage)
-
-[查看源码](../../Assets/ZPLAYAds)
-
-## 导入 ZPLAYAds Unity 插件
+## 导入ZPLAYAds Unity插件
 
 在 Unity 编辑器中打开您的项目。选择 **Assets> Import Package> Custom Package**，找到您下载的 ZPLAYAds.unitypackage 文件。
 
@@ -62,31 +58,31 @@ ZPLAYAds Unity 插件使 Unity 开发人员可以轻松地在 Android 和 iOS �
 
 ![img](resources/image-select-package.png)
 
-## 集成 ZPLAYAds
+## 集成ZPLAYAds
 
-ZPLAYAds Unity 插件随着 [Unity Play Services Resolver library](https://github.com/googlesamples/unity-jar-resolver) 一起发布。这个库适用于任何需要访问 Android 特定库(例如 AARs)或 iOS CocoaPods 的 Unity 插件。它为 Unity 插件提供了声明依赖关系的能力，然后自动解析并复制到 Unity 项目中。请按照下面列出的步骤确保您的项目包含 ZPLAYAds。
+ZPLAYAds Unity插件与[Unity Play Services Resolver library](https://github.com/googlesamples/unity-jar-resolver)一起发布。这个Library适用于任何需要访问Android特定库(例如AARs)或iOS CocoaPods的Unity插件。它声明了Unity插件的依赖项，这些依赖项可被自动解析并复制到Unity项目中。
 
-### 部署 iOS 项目
+请按照下面列出的步骤操作以确保集成ZPLAYAds Unity插件。
 
-将 ZPLAYAds 集成到 Unity 项目中无需其他步骤。
+### 部署iOS项目
 
-构建完成，打开 **xcworkspace** 工程。
+将ZPLAYAds集成到Unity项目中无需其他步骤。
 
-**注意：使用 CocoaPods 识别 iOS 依赖项。 CocoaPods 作为后期构建过程步骤运行。**
+构建完成，打开**xcworkspace**工程。
 
-### 部署 Android 项目
+**注意：使用CocoaPods识别iOS依赖项。CocoaPods作为后期构建过程步骤运行。**
 
-在Unity编辑器中，选择 **Assets> Play Services Resolver> Android Resolver>Force Resolve**。 Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用程序的 **Assets/Plugins/Android** 目录中。
+### 部署Android项目
+
+在Unity编辑器中，选择 **Assets> Play Services Resolver> Android Resolver>Force Resolve**。 Unity Play 服务解析器库会将声明的依赖项复制到Unity应用程序的**Assets/Plugins/Android**目录中。
 
 ![img](./resources/image-play-services-resolver.png)
 
-
-
-注意: ZPLAYAds Unity 插件依赖项列在 **Assets/ZPLAYAds/Editor/ZPLAYAdsDependencies.xml** 中
+注意：ZPLAYAds Unity插件依赖项列在 **Assets/ZPLAYAds/Editor/ZPLAYAdsDependencies.xml**中
 
 ## 选择广告形式
 
-在部署到 Android 或 iOS 平台时，ZPLAYAds 现在包含在 Unity 应用程序中。您现在已准备好实施广告。ZPLAYAds 提供多种不同的广告格式，因此您可以选择最适合您的用户体验需求的广告格式。
+现在，您的Unity应用已经成功接入了ZPLAYAds SDK，之后便可展示广告了。ZPLAYAds提供不同的广告形式，您可以选择最符合您用户体验要求的广告形式。
 
 ### Interstitial
 
@@ -151,7 +147,7 @@ public class ZPLAYAdsDemoScript : MonoBehaviour
 }
 ```
 
-#### 请求 Interstitial
+#### 请求Interstitial
 
 如果打开自动请求 ```interstitial.SetAutoloadNext(true)``` 模式，首次请求后，SDK 会在展示完成后或广告请求失败后自动请求下一条广告
 
@@ -159,13 +155,13 @@ public class ZPLAYAdsDemoScript : MonoBehaviour
 interstitial.LoadAd(ZPLAYADS_UNIT_ID_INTERSTITIAL);
 ```
 
-#### 判断 Interstitial 是否准备好
+#### 判断Interstitial是否准备好
 
 ```c#
 interstitial.IsLoaded(ZPLAYADS_UNIT_ID_INTERSTITIAL)
 ```
 
-#### 展示 Interstitial
+#### 展示Interstitial
 
 建议先调用 ```interstitial.IsLoaded(ZPLAYADS_UNIT_ID_INTERSTITIAL)``` 判断插屏是否准备好
 
@@ -244,20 +240,20 @@ public class ZPLAYAdsDemoScript : MonoBehaviour
 }
 ```
 
-#### 请求 Reward Video
+#### 请求Rewarded Video
 如果打开自动请求 ```rewardVideo.SetAutoloadNext(true)``` 模式，首次请求后，SDK会在展示完成后或广告请求失败后自动请求下一条广告
 
 ```C#
 rewardVideo.LoadAd(ZPLAYADS_UNIT_ID_REWARD_VIDEO);
 ```
 
-#### 判断 Revideo Video 是否准备好
+#### 判断Rewarded Video是否准备好
 
 ```c#
 rewardVideo.IsLoaded(ZPLAYADS_UNIT_ID_REWARD_VIDEO)
 ```
 
-#### 展示 Rewarded Video
+#### 展示Rewarded Video
 
 ```c#
 if(rewardVideo.IsLoaded(ZPLAYADS_UNIT_ID_REWARD_VIDEO))
