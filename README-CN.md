@@ -53,11 +53,11 @@ ZPLAYAds Unity插件使Unity开发人员可以轻松地在Android和iOS应用上
 
 在Unity编辑器中打开您的项目，选择**Assets> Import Package> Custom Package**，找到您下载的ZPLAYAds.unitypackage文件。
 
-![img](resources/image-import-custom-package.png)
+![img](img/image-import-custom-package.png)
 
 确保选中所有文件，然后单击**Import**.
 
-![img](resources/image-select-package.png)
+![img](img/image-select-package.png)
 
 ## 集成ZPLAYAds
 
@@ -77,7 +77,7 @@ ZPLAYAds Unity插件与[Unity Play Services Resolver library](https://github.com
 
 在Unity编辑器中，选择 **Assets> Play Services Resolver> Android Resolver>Force Resolve**。 Unity Play服务解析器库会将声明的依赖项复制到Unity应用程序的**Assets/Plugins/Android**目录中。
 
-![img](./resources/image-play-services-resolver.png)
+![img](img/image-play-services-resolver.png)
 
 注意：ZPLAYAds Unity插件依赖项列在**Assets/ZPLAYAds/Editor/ZPLAYAdsDependencies.xml**中
 
