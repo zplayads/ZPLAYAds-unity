@@ -42,11 +42,12 @@
 
   Android API 14 或更高版本
 
-3. [Demo 获取地址](../../Assets)   
+3. [Demo 获取地址](https://github.com/zplayads/ZPLAYAds-unity/tree/master/Assets)   
 
 ## 下载ZPLAYAds Unity插件
 
-ZPLAYAds Unity插件使Unity开发人员可以轻松地在Android和iOS应用上展示广告，无需编写Java或Objective-C代码，该插件提供了一个C#接口来请求广告。您可以下载[ZPLAYAds Unity插件包](./ZPLAYAds.unitypackage)或在GitHub上查看相关代码，如[Android代码](../android-library/app/src/main/java/com/zplay/adsunity)、[iOS代码](../../Assets/Plugins/iOS)或[查看全部源码](../../Assets/ZPLAYAds)
+ZPLAYAds Unity插件使Unity开发人员可以轻松地在Android和iOS应用上展示广告，无需编写Java或Objective-C代码，该插件提供了一个C#接口来请求广告。您可以下载[ZPLAYAds Unity插件包](source/ZPLAYAds.unitypackage)或在GitHub上查看相关代码，如[Android代码](source/android-library/app/src/main/java/com/zplay/adsunity)、[iOS代码](Assets/Plugins/iOS)或[全部源码](Assets/ZPLAYAds)
+
 
 ## 导入ZPLAYAds Unity插件
 
