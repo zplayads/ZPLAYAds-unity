@@ -50,11 +50,11 @@ The ZPLAYAds Unity plugin enables Unity developers to easily serve ZPLAY Ads on 
 
 Open your project in the Unity editor. Select **Assets> Import Package> Custom Package** and find the ZPLAYAds.unitypackage file you downloaded.
 
-![img](resources/image-import-custom-package.png)
+![img](img/image-import-custom-package.png)
 
 Make sure all of the files are selected and click **Import**.
 
-![img](resources/image-select-package.png)
+![img](img/image-select-package.png)
 
 ## Include the ZPLAYAds SDK
 
@@ -74,7 +74,7 @@ After building, open **xcworkspace** project, you can get the entire iOS project
 
 In the Unity editor, select **Assets> Play Services Resolver> Android Resolver>Force Resolve**. The Unity Play Services Resolver library will copy the declared dependencies into the **Assets/Plugins/Android** directory of your Unity app.
 
-![img](./resources/image-play-services-resolver.png)
+![img](img/image-play-services-resolver.png)
 
 Note: The Google Mobile Ads Unity plugin dependencies are listed in **Assets/ZPLAYAds/Editor/ZPLAYAdsDependencies.xml**
 
