@@ -21,11 +21,11 @@
 
 ## 概述
 
-1.面向人群
+1. 面向人群
 
-本产品主要面向需要在 Unity 产品中接 ZPLAYAds SDK 的开发人员。
+本产品主要面向需要在Unity产品中接入ZPLAYAds SDK的开发人员。
 
-2.先决条件
+2. 先决条件
 
 - Unity 5.6 或更高版本
 
@@ -42,21 +42,22 @@
 
   Android API 14 或更高版本
 
-3.[Demo 获取地址](../../Assets)   
+3. [Demo 获取地址](https://github.com/zplayads/ZPLAYAds-unity/tree/master/Assets)   
 
 ## 下载ZPLAYAds Unity插件
 
-ZPLAYAds Unity插件使Unity开发人员可以轻松地在 Android 和 iOS 应用上展示广告，无需编写 Java 或 Objective-C 代码。该插件提供了一个 C# 接口来请求广告。您可以[下载ZPLAYAds Unity插件包](source/ZPLAYAds.unitypackage)或在GitHub上查看代码。（[Android代码](source/android-library/app/src/main/java/com/zplay/adsunity)、[iOS代码](../../Assets/Plugins/iOS)、[查看源码](Assets/ZPLAYAds)）
+ZPLAYAds Unity插件使Unity开发人员可以轻松地在Android和iOS应用上展示广告，无需编写Java或Objective-C代码，该插件提供了一个C#接口来请求广告。您可以下载[ZPLAYAds Unity插件包](source/ZPLAYAds.unitypackage)或在GitHub上查看相关代码，如[Android代码](source/android-library/app/src/main/java/com/zplay/adsunity)、[iOS代码](Assets/Plugins/iOS)或[全部源码](Assets/ZPLAYAds)
+
 
 ## 导入ZPLAYAds Unity插件
 
-在 Unity 编辑器中打开您的项目。选择 **Assets> Import Package> Custom Package**，找到您下载的 ZPLAYAds.unitypackage 文件。
+在Unity编辑器中打开您的项目，选择**Assets> Import Package> Custom Package**，找到您下载的ZPLAYAds.unitypackage文件。
 
-![img](resources/image-import-custom-package.png)
+![img](img/image-import-custom-package.png)
 
-确保选中所有文件，然后单击 **Import**.
+确保选中所有文件，然后单击**Import**.
 
-![img](resources/image-select-package.png)
+![img](img/image-select-package.png)
 
 ## 集成ZPLAYAds
 
@@ -68,21 +69,21 @@ ZPLAYAds Unity插件与[Unity Play Services Resolver library](https://github.com
 
 将ZPLAYAds集成到Unity项目中无需其他步骤。
 
-构建完成，打开**xcworkspace**工程。
+项目构建完成，打开**xcworkspace**工程即可看到完整的iOS项目。
 
 **注意：使用CocoaPods识别iOS依赖项。CocoaPods作为后期构建过程步骤运行。**
 
 ### 部署Android项目
 
-在Unity编辑器中，选择 **Assets> Play Services Resolver> Android Resolver>Force Resolve**。 Unity Play 服务解析器库会将声明的依赖项复制到Unity应用程序的**Assets/Plugins/Android**目录中。
+在Unity编辑器中，选择 **Assets> Play Services Resolver> Android Resolver>Force Resolve**。 Unity Play服务解析器库会将声明的依赖项复制到Unity应用程序的**Assets/Plugins/Android**目录中。
 
-![img](./resources/image-play-services-resolver.png)
+![img](img/image-play-services-resolver.png)
 
-注意：ZPLAYAds Unity插件依赖项列在 **Assets/ZPLAYAds/Editor/ZPLAYAdsDependencies.xml**中
+注意：ZPLAYAds Unity插件依赖项列在**Assets/ZPLAYAds/Editor/ZPLAYAdsDependencies.xml**中
 
 ## 选择广告形式
 
-现在，您的Unity应用已经成功接入了ZPLAYAds SDK，之后便可展示广告了。ZPLAYAds提供不同的广告形式，您可以选择最符合您用户体验要求的广告形式。
+现在，您的Unity应用已经成功接入了ZPLAYAds SDK，接下来您可以选择您需要的广告形式，ZPLAYAd目前仅为Unity项目提供插屏、激励视频等三种广告形式。
 
 ### Interstitial
 
@@ -119,6 +120,9 @@ public class ZPLAYAdsDemoScript : MonoBehaviour
   }
   
   #region Interstitial callback handlers
+
+// 您可在此处看到所有的ZPLAYAds回调
+
   public void HandleInterstitialLoaded(object sender, EventArgs args)
   {
     print("===> HandleInterstitialLoaded event received");
