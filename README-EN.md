@@ -82,6 +82,16 @@ Note: The Google Mobile Ads Unity plugin dependencies are listed in **Assets/ZPL
 
 The ZPLAYAds SDK is now included in your Unity app when deploying to either the Android or iOS platform. You're now ready to implement an ad. ZPLAYAds offers a number of different ad formats, so you can choose the one that best fits your user experience needs.
 
+You can use the following test id when you are testing. Test id won't generate revenue, please use official id when you release your App.
+
+| OS      | Format | App_ID                               | Ad_Unit_id                           |
+| ------- |  --------------- |------------------------------------ | ------------------------------------ |
+| iOS     |Rewarded Video| A650AB0D-7BFC-2A81-3066-D3170947C3DA | BAE5DAAC-04A2-2591-D5B0-38FA846E45E7 |
+| iOS     |Interstitial| A650AB0D-7BFC-2A81-3066-D3170947C3DA | BAE5DAAC-04A2-2591-D5B0-38FA846E45E7 |
+| Android |Rewarded Video|  5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 3FBEFA05-3A8B-2122-24C7-A87D0BC9FEEC |
+| Android |Interstitial|  5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 3FBEFA05-3A8B-2122-24C7-A87D0BC9FEEC |
+
+
 ### Interstitial
 
 #### Initialize and Request Interstitial
