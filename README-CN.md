@@ -90,9 +90,9 @@ ZPLAYAds Unity插件与[Unity Play Services Resolver library](https://github.com
 | 操作系统      | 广告形式 | App_ID                               | Ad_Unit_id                           |
 | ------- |  --------------- |------------------------------------ | ------------------------------------ |
 | iOS     |激励视频| A650AB0D-7BFC-2A81-3066-D3170947C3DA | BAE5DAAC-04A2-2591-D5B0-38FA846E45E7 |
-| iOS     |插屏| A650AB0D-7BFC-2A81-3066-D3170947C3DA | BAE5DAAC-04A2-2591-D5B0-38FA846E45E7 |
+| iOS     |插屏| A650AB0D-7BFC-2A81-3066-D3170947C3DA | 0868EBC0-7768-40CA-4226-F9924221C8EB |
 | Android |激励视频|  5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 3FBEFA05-3A8B-2122-24C7-A87D0BC9FEEC |
-| Android |插屏|  5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 3FBEFA05-3A8B-2122-24C7-A87D0BC9FEEC |
+| Android |插屏|  5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 19393189-C4EB-3886-60B9-13B39407064E |
 
 ### Interstitial
 
