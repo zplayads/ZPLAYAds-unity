@@ -8,9 +8,12 @@
   </androidPackages>
 
   <iosPods>
-    <iosPod name="PlayableAds" version="~> 2.3">
+    <iosPod name="PlayableAds" version="~> 2.4">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
+      </sources>
+      <sources>
+          <source>https://github.com/yumimobi/Specs</source>
       </sources>
     </iosPod>
   </iosPods>
