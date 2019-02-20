@@ -44,7 +44,7 @@ This guide is intended for publishers who want to integrate ZPLAYAds SDK to ther
 
 ## Download the ZPLAYAds Unity plugin
 
-The ZPLAYAds Unity plugin enables Unity developers to easily serve ZPLAY Ads on Android and iOS apps without having to write Java or Objective-C code. The plugin provides a C# interface for requesting ads that is used by C# scripts in your Unity project. You can download the ZPLAYAds Unity plugin or look at its code on GitHub.([codes of Android](../android-library/app/src/main/java/com/zplay/adsunity)、[codes of iOS](../../Assets/Plugins/iOS)、[view source](../../Assets/ZPLAYAds))
+The ZPLAYAds Unity plugin enables Unity developers to easily serve ZPLAY Ads on Android and iOS apps without having to write Java or Objective-C code. The plugin provides a C# interface for requesting ads that is used by C# scripts in your Unity project. You can download the [ZPLAYAds Unity plugin](../ZPLAYAds.unitypackage) or look at its code on GitHub.([codes of Android](../android-library/app/src/main/java/com/zplay/adsunity)、[codes of iOS](../../Assets/Plugins/iOS)、[view source](../../Assets/ZPLAYAds))
 
 ## Import the Mobile Ads Unity plugin
 
