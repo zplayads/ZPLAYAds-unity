@@ -12,9 +12,6 @@
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>
-      <sources>
-          <source>https://github.com/yumimobi/Specs</source>
-      </sources>
     </iosPod>
   </iosPods>
 </dependencies>
