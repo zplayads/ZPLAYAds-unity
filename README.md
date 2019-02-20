@@ -1,6 +1,6 @@
-#### [接入文档](https://github.com/zplayads/ZPLAYAds-unity/blob/master/README-CN.md)
+#### [接入文档](./source/document/ZPLAYAds for Unity(zh-cn).md)
 
-#### [SDK Integration](https://github.com/zplayads/ZPLAYAds-unity/blob/master/README-EN.md)
+#### [SDK Integration](./source/document/ZPLAYAds for Unity(en).md)
 
 #### [Changelog for iOS](https://github.com/zplayads/PlayableAdsDemo-iOS)
 
