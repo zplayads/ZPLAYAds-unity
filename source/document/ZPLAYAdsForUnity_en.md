@@ -262,7 +262,7 @@ if(rewardVideo.IsLoaded(ZPLAYADS_UNIT_ID_REWARD_VIDEO))
 ```
 
 ## Test ID
-You can use the following test id when you are testing. Test id won't generate revenue, please use official id when you release your App.
+Note: You are available to use the following ID when testing your App (no charge). Please replace them with the ID you applied in ZPLAY Ads when you publish your App.
 
 | OS      | Format | App_ID                               | Ad_Unit_ID                           |
 | ------- |  --------------- |------------------------------------ | ------------------------------------ |
