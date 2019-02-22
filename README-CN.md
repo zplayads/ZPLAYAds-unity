@@ -1,21 +1,22 @@
-* [ZPLAYAds for Unity](#zplayads-for-unity)
-  * [概述](#概述)
-  * [下载ZPLAYAds Unity插件](#下载zplayads-unity插件)
-  * [导入ZPLAYAds Unity插件](#导入zplayads-unity插件)
-  * [集成ZPLAYAds](#集成zplayads)
-      * [部署iOS项目](#部署ios项目)
-      * [部署Android项目](#部署android项目)
-  * [选择广告形式](#选择广告形式)
-      * [Interstitial](#interstitial)
-        * [初始化及请求插屏](#初始化及请求插屏)
-        * [请求Interstitial](#请求interstitial)
-        * [判断Interstitial是否准备好](#判断interstitial是否准备好)
-        * [展示Interstitial](#展示interstitial)
-      * [Rewarded Video](#rewarded-video)
-        * [初始化及请求视频](#初始化及请求视频)
-        * [请求Rewarded Video](#请求rewarded-video)
-        * [判断Rewarded Video是否准备好](#判断rewarded-video是否准备好)
-        * [展示Rewarded Video](#展示rewarded-video)
+- [ZPLAYAds for Unity](#zplayads-for-unity)
+  - [概述](#%E6%A6%82%E8%BF%B0)
+  - [下载ZPLAYAds Unity插件](#%E4%B8%8B%E8%BD%BDzplayads-unity%E6%8F%92%E4%BB%B6)
+  - [导入ZPLAYAds Unity插件](#%E5%AF%BC%E5%85%A5zplayads-unity%E6%8F%92%E4%BB%B6)
+  - [集成ZPLAYAds](#%E9%9B%86%E6%88%90zplayads)
+    - [部署iOS项目](#%E9%83%A8%E7%BD%B2ios%E9%A1%B9%E7%9B%AE)
+    - [部署Android项目](#%E9%83%A8%E7%BD%B2android%E9%A1%B9%E7%9B%AE)
+  - [选择广告形式](#%E9%80%89%E6%8B%A9%E5%B9%BF%E5%91%8A%E5%BD%A2%E5%BC%8F)
+    - [Interstitial](#interstitial)
+      - [初始化及请求插屏](#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%8A%E8%AF%B7%E6%B1%82%E6%8F%92%E5%B1%8F)
+      - [请求Interstitial](#%E8%AF%B7%E6%B1%82interstitial)
+      - [判断Interstitial是否准备好](#%E5%88%A4%E6%96%ADinterstitial%E6%98%AF%E5%90%A6%E5%87%86%E5%A4%87%E5%A5%BD)
+      - [展示Interstitial](#%E5%B1%95%E7%A4%BAinterstitial)
+    - [Rewarded Video](#rewarded-video)
+      - [初始化及请求视频](#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%8A%E8%AF%B7%E6%B1%82%E8%A7%86%E9%A2%91)
+      - [请求Rewarded Video](#%E8%AF%B7%E6%B1%82rewarded-video)
+      - [判断Rewarded Video是否准备好](#%E5%88%A4%E6%96%ADrewarded-video%E6%98%AF%E5%90%A6%E5%87%86%E5%A4%87%E5%A5%BD)
+      - [展示Rewarded Video](#%E5%B1%95%E7%A4%BArewarded-video)
+  - [测试ID](#%E6%B5%8B%E8%AF%95id)
 
 # ZPLAYAds for Unity
 
@@ -84,15 +85,6 @@ ZPLAYAds Unity插件与[Unity Play Services Resolver library](https://github.com
 ## 选择广告形式
 
 现在，您的Unity应用已经成功接入了ZPLAYAds SDK，接下来您可以选择您需要的广告形式，ZPLAYAd目前仅为Unity项目提供插屏、激励视频两种广告形式。
-
-您在测试中可使用如下id进行测试，测试id不会产生收益，应用上线时请使用您申请的正式id。
-
-| 操作系统      | 广告形式 | App_ID                               | Ad_Unit_id                           |
-| ------- |  --------------- |------------------------------------ | ------------------------------------ |
-| iOS     |激励视频| A650AB0D-7BFC-2A81-3066-D3170947C3DA | BAE5DAAC-04A2-2591-D5B0-38FA846E45E7 |
-| iOS     |插屏| A650AB0D-7BFC-2A81-3066-D3170947C3DA | 0868EBC0-7768-40CA-4226-F9924221C8EB |
-| Android |激励视频|  5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 3FBEFA05-3A8B-2122-24C7-A87D0BC9FEEC |
-| Android |插屏|  5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 19393189-C4EB-3886-60B9-13B39407064E |
 
 ### Interstitial
 
@@ -274,3 +266,13 @@ if(rewardVideo.IsLoaded(ZPLAYADS_UNIT_ID_REWARD_VIDEO))
   rewardVideo.Show(ZPLAYADS_UNIT_ID_REWARD_VIDEO);
 } 
 ```
+## 测试ID
+
+您在测试中可使用如下id进行测试，测试id不会产生收益，应用上线时请使用您申请的正式id。
+
+| 操作系统      | 广告形式 | App_ID                               | Ad_Unit_id                           |
+| ------- |  --------------- |------------------------------------ | ------------------------------------ |
+| iOS     |激励视频| A650AB0D-7BFC-2A81-3066-D3170947C3DA | BAE5DAAC-04A2-2591-D5B0-38FA846E45E7 |
+| iOS     |插屏| A650AB0D-7BFC-2A81-3066-D3170947C3DA | 0868EBC0-7768-40CA-4226-F9924221C8EB |
+| Android |激励视频|  5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 3FBEFA05-3A8B-2122-24C7-A87D0BC9FEEC |
+| Android |插屏|  5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 19393189-C4EB-3886-60B9-13B39407064E |
