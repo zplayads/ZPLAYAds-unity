@@ -16,7 +16,7 @@
         * [请求Rewarded Video](#请求rewarded-video)
         * [判断Rewarded Video是否准备好](#判断rewarded-video是否准备好)
         * [展示Rewarded Video](#展示rewarded-video)
-  * [测试ID](#测试id)
+  * [测试](#测试)
 
 # ZPLAYAds for Unity
 
