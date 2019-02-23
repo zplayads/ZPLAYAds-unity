@@ -16,7 +16,7 @@
       - [Request Rewarded Video](#request-rewarded-video)
       - [Judge Whether Rewarded Video Has Been Loaded](#judge-whether-rewarded-video-has-been-loaded)
       - [Present Rewarded Video](#present-rewarded-video)
-  - [Test ID](#test-id)
+  - [Test](#test)
 
 # ZPLAYAds for Unity
 
@@ -261,8 +261,8 @@ if(rewardVideo.IsLoaded(ZPLAYADS_UNIT_ID_REWARD_VIDEO))
 } 
 ```
 
-## Test ID
-Note: You are available to use the following ID when testing your App (no charge). Please replace them with the ID you applied in ZPLAY Ads when you publish your App.
+## Test
+You are available to use the following ID when testing your App (no charge). Please replace them with the ID you applied in ZPLAY Ads when you publish your App.
 
 | OS      | Format | App_ID                               | Ad_Unit_ID                           |
 | ------- |  --------------- |------------------------------------ | ------------------------------------ |
