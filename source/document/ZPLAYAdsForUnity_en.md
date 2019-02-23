@@ -16,16 +16,17 @@
       - [Request Rewarded Video](#request-rewarded-video)
       - [Judge Whether Rewarded Video Has Been Loaded](#judge-whether-rewarded-video-has-been-loaded)
       - [Present Rewarded Video](#present-rewarded-video)
+  - [Test ID](#test-id)
 
 # ZPLAYAds for Unity
 
 ## Get Started
 
-1. Guide Intended for
+1.Guide Intended for
 
-This guide is intended for publishers who want to integrate ZPLAYAds SDK to their Unity apps. 
+This guide is intended for publishers who want to integrate ZPLAYAds SDK to theri Unity apps. 
 
-2. Prerequisites
+2.Prerequisites
 
 - Use Unity 5.6 or higher
 - To deploy to iOS
@@ -40,21 +41,21 @@ This guide is intended for publishers who want to integrate ZPLAYAds SDK to thei
 
   Target Android API level 14 or higher
 
-3. [Access Demo](https://github.com/zplayads/ZPLAYAds-unity/tree/master/Assets)   
+3.[Access Demo](../../Assets)   
 
 ## Download the ZPLAYAds Unity plugin
 
-The ZPLAYAds Unity plugin enables Unity developers to easily serve ZPLAY Ads on Android and iOS apps without having to write Java or Objective-C code. The plugin provides a C# interface for requesting ads that is used by C# scripts in your Unity project. You can download the [ZPLAYAds Unity plugin](source/ZPLAYAds.unitypackage) or take a look at its code on GitHub, such as [Android source code](source/android-library/app/src/main/java/com/zplay/adsunity), [iOS source code](Assets/Plugins/iOS) and [all source code](Assets/ZPLAYAds)
+The ZPLAYAds Unity plugin enables Unity developers to easily serve ZPLAY Ads on Android and iOS apps without having to write Java or Objective-C code. The plugin provides a C# interface for requesting ads that is used by C# scripts in your Unity project. You can download the [ZPLAYAds Unity plugin](https://github.com/zplayads/ZPLAYAds-unity/raw/master/source/ZPLAYAds.unitypackage) or look at its code on GitHub.([codes of Android](../android-library/app/src/main/java/com/zplay/adsunity)、[codes of iOS](../../Assets/Plugins/iOS)、[view source](../../Assets/ZPLAYAds))
 
 ## Import the Mobile Ads Unity plugin
 
 Open your project in the Unity editor. Select **Assets> Import Package> Custom Package** and find the ZPLAYAds.unitypackage file you downloaded.
 
-![img](img/image-import-custom-package.png)
+![img](resources/image-import-custom-package.png)
 
 Make sure all of the files are selected and click **Import**.
 
-![img](img/image-select-package.png)
+![img](resources/image-select-package.png)
 
 ## Include the ZPLAYAds SDK
 
@@ -66,7 +67,7 @@ Follow the steps listed below to ensure your project includes the ZPLAYAds SDK.
 
 No additional steps are required to include the ZPLAYAds SDK into the Unity project.
 
-After building, open **xcworkspace** project, you can get the entire iOS project. 
+After building, open **xcworkspace** project. 
 
 **Note: iOS dependencies are identified using CocoaPods. CocoaPods is run as a post build process step.**
 
@@ -74,7 +75,7 @@ After building, open **xcworkspace** project, you can get the entire iOS project
 
 In the Unity editor, select **Assets> Play Services Resolver> Android Resolver>Force Resolve**. The Unity Play Services Resolver library will copy the declared dependencies into the **Assets/Plugins/Android** directory of your Unity app.
 
-![img](img/image-play-services-resolver.png)
+![img](./resources/image-play-services-resolver.png)
 
 Note: The Google Mobile Ads Unity plugin dependencies are listed in **Assets/ZPLAYAds/Editor/ZPLAYAdsDependencies.xml**
 
@@ -206,9 +207,6 @@ public class ZPLAYAdsDemoScript : MonoBehaviour
   }
 
   #region RewardVideo callback handlers
-  
-  // you can see all callback here
-
   public void HandleRewardVideoLoaded(object sender, EventArgs args)
   {
       print("===> HandleRewardVideoLoaded event received");
@@ -262,3 +260,13 @@ if(rewardVideo.IsLoaded(ZPLAYADS_UNIT_ID_REWARD_VIDEO))
   rewardVideo.Show(ZPLAYADS_UNIT_ID_REWARD_VIDEO);
 } 
 ```
+
+## Test ID
+Note: You are available to use the following ID when testing your App (no charge). Please replace them with the ID you applied in ZPLAY Ads when you publish your App.
+
+| OS      | Format | App_ID                               | Ad_Unit_ID                           |
+| ------- |  --------------- |------------------------------------ | ------------------------------------ |
+| iOS     |Rewarded Video| A650AB0D-7BFC-2A81-3066-D3170947C3DA | BAE5DAAC-04A2-2591-D5B0-38FA846E45E7 |
+| iOS     |Interstitial| A650AB0D-7BFC-2A81-3066-D3170947C3DA | 0868EBC0-7768-40CA-4226-F9924221C8EB  |
+| Android |Rewarded Video|  5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 3FBEFA05-3A8B-2122-24C7-A87D0BC9FEEC |
+| Android |Interstitial|  5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 19393189-C4EB-3886-60B9-13B39407064E |
