@@ -6,9 +6,16 @@ namespace ZPLAYAds.Api
     {
         private IInterstitialClient client;
 
-        public InterstitialAd(string adAppId, string adUnitId)
+        // Creates InterstitialAd instance.
+        public InterstitialAd(string adAppId, string adUnitId, AdOptions adOptions)
         {
             client = ZPLAYAdsClientFactory.BuildInterstitialClient(adAppId, adUnitId);
+            if (adOptions == null)
+            {
+                adOptions = new AdOptionsBuilder().build();
+            }
+            client.SetChannelId(adOptions.mChannelId);
+            client.SetAutoloadNext(adOptions.isAutoLoad);
 
             client.OnAdLoaded += (sender, args) =>
             {
@@ -18,11 +25,11 @@ namespace ZPLAYAds.Api
                 }
             };
 
-            client.OnAdFailed += (sender, args) =>
+            client.OnAdFailedToLoad += (sender, args) =>
             {
-                if (OnAdFailed != null)
+                if (OnAdFailedToLoad != null)
                 {
-                    OnAdFailed(this, args);
+                    OnAdFailedToLoad(this, args);
                 }
             };
 
@@ -34,14 +41,6 @@ namespace ZPLAYAds.Api
                 }
             };
 
-            client.OnAdVideoCompleted += (sender, args) =>
-            {
-                if (OnAdVideoCompleted != null)
-                {
-                    OnAdVideoCompleted(this, args);
-                }
-            };
-
             client.OnAdClicked += (sender, args) =>
             {
                 if (OnAdClicked != null)
@@ -50,51 +49,57 @@ namespace ZPLAYAds.Api
                 }
             };
 
-            client.OnAdCompleted += (sender, args) =>
+            client.OnAdClosed += (sender, args) =>
             {
-                if (OnAdCompleted != null)
+                if (OnAdClosed != null)
                 {
-                    OnAdCompleted(this, args);
+                    OnAdClosed(this, args);
                 }
             };
         }
 
-        // These are the ad callback events that can be hooked into.
+        // Ad event fired when the interstitial ad has loaded.
         public event EventHandler<EventArgs> OnAdLoaded;
-        public event EventHandler<AdFailedEventArgs> OnAdFailed;
+        // Ad event fired when the interstitial ad has failed to load.
+        public event EventHandler<AdFailedEventArgs> OnAdFailedToLoad;
+        // Ad event fired when the interstitial ad is started.
         public event EventHandler<EventArgs> OnAdStarted;
+        // Ad event fired when the interstitial ad is clicked.
         public event EventHandler<EventArgs> OnAdClicked;
-        public event EventHandler<EventArgs> OnAdVideoCompleted;
-        public event EventHandler<EventArgs> OnAdCompleted;
+        // Ad event fired when the interstitial ad is closed.
+        public event EventHandler<EventArgs> OnAdClosed;
 
-        // Loads a new reward video
+        // Loads the InterstitialAd.
         public void LoadAd(string adUnitId)
         {
             client.LoadAd(adUnitId);
         }
 
-        // Determines whether the reward video has loaded
-        public bool IsLoaded(string adUnitId)
+        // Determines whether the InterstitialAd has loaded.
+        public bool IsReady(string adUnitId)
         {
-            return client.IsLoaded(adUnitId);
+            return client.IsReady(adUnitId);
         }
 
-        // Shows the reward video
+        // Displays the InterstitialAd.
         public void Show(string adUnitId)
         {
             client.Show(adUnitId);
         }
 
-        // Sets whether load the next reward video automatically
+        [Obsolete("SetAutoloadNext is deprecated, please use AdOptions instead.", true)]
         public void SetAutoloadNext(bool autoload)
         {
             client.SetAutoloadNext(autoload);
         }
 
-        // Sets the channel id
+        [Obsolete("SetChannelId is deprecated, please use AdOptions instead.", true)]
         public void SetChannelId(string channelId)
         {
             client.SetChannelId(channelId);
         }
+
+        [Obsolete("OnAdVideoCompleted is no more supported.", true)]
+        public event EventHandler<EventArgs> OnAdVideoCompleted;
     }
 }
