@@ -10,11 +10,11 @@ namespace ZPLAYAds.Android
     {
         AndroidJavaObject androidInterstitial;
         public event EventHandler<EventArgs> OnAdLoaded = delegate { };
-        public event EventHandler<AdFailedEventArgs> OnAdFailed = delegate { };
+        public event EventHandler<AdFailedEventArgs> OnAdFailedToLoad = delegate { };
         public event EventHandler<EventArgs> OnAdStarted = delegate { };
         public event EventHandler<EventArgs> OnAdClicked = delegate { };
-        public event EventHandler<EventArgs> OnAdVideoCompleted = delegate { };
-        public event EventHandler<EventArgs> OnAdCompleted = delegate { };
+        public event EventHandler<EventArgs> OnAdVideoFinished = delegate { };
+        public event EventHandler<EventArgs> OnAdClosed = delegate { };
 
         public InterstitialClient(string appId) : base(Utils.UnityInterstitialAdListenerClassName)
         {
@@ -30,7 +30,7 @@ namespace ZPLAYAds.Android
             androidInterstitial.Call("loadAd", adUnitId);
         }
 
-        public bool IsLoaded(string adUnitId)
+        public bool IsReady(string adUnitId)
         {
             return androidInterstitial.Call<bool>("isLoaded", adUnitId);
         }
@@ -62,13 +62,13 @@ namespace ZPLAYAds.Android
 
         void onAdFailed(String errorReason)
         {
-            if (OnAdFailed != null)
+            if (OnAdFailedToLoad != null)
             {
                 AdFailedEventArgs args = new AdFailedEventArgs()
                 {
                     Message = errorReason
                 };
-                OnAdFailed(this, args);
+                OnAdFailedToLoad(this, args);
             }
         }
 
@@ -90,17 +90,17 @@ namespace ZPLAYAds.Android
 
         void onAdVideoCompleted()
         {
-            if (OnAdVideoCompleted != null)
+            if (OnAdVideoFinished != null)
             {
-                OnAdVideoCompleted(this, EventArgs.Empty);
+                OnAdVideoFinished(this, EventArgs.Empty);
             }
         }
 
         void onAdCompleted()
         {
-            if (OnAdCompleted != null)
+            if (OnAdClosed != null)
             {
-                OnAdCompleted(this, EventArgs.Empty);
+                OnAdClosed(this, EventArgs.Empty);
             }
         }
         #endregion
