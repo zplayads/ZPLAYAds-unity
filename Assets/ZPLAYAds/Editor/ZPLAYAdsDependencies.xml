@@ -1,6 +1,6 @@
 <dependencies>
   <androidPackages>
-    <androidPackage spec="com.playableads:playableads:2.3.1">
+    <androidPackage spec="com.playableads:playableads:2.+">
       <repositories>
         <repository>https://jcenter.bintray.com/</repository>
       </repositories>
