@@ -28,14 +28,13 @@ namespace ZPLAYAds.iOS
         internal delegate void ZPLADRewardVideoDidCompleteCallback(IntPtr rewardVideoClient);
 
         #endregion
-
         public event EventHandler<EventArgs> OnAdLoaded;
-        public event EventHandler<AdFailedEventArgs> OnAdFailed;
+        public event EventHandler<AdFailedEventArgs> OnAdFailedToLoad;
         public event EventHandler<EventArgs> OnAdStarted;
         public event EventHandler<EventArgs> OnAdClicked;
         public event EventHandler<EventArgs> OnAdRewarded;
-        public event EventHandler<EventArgs> OnAdVideoCompleted;
-        public event EventHandler<EventArgs> OnAdCompleted;
+        public event EventHandler<EventArgs> OnAdVideoFinished;
+        public event EventHandler<EventArgs> OnAdClosed;
 
         public RewardVideoClient(string adAppId, string adUnitId)
         {
@@ -73,7 +72,7 @@ namespace ZPLAYAds.iOS
             Externs.ZPLADRequestRewardVideo(RewardVideoPtr);
         }
 
-        public bool IsLoaded(string adUnitId)
+        public bool IsReady(string adUnitId)
         {
             return Externs.ZPLADRewardVideoReady(RewardVideoPtr);
         }
@@ -125,13 +124,13 @@ namespace ZPLAYAds.iOS
         static void RewardVideoDidFailToReceiveAdWithErrorCallback(IntPtr interstitialClient, string error)
         {
             RewardVideoClient client = IntPtrToRewardVideoClient(interstitialClient);
-            if (client.OnAdFailed != null)
+            if (client.OnAdFailedToLoad != null)
             {
                 AdFailedEventArgs args = new AdFailedEventArgs()
                 {
                     Message = error
                 };
-                client.OnAdFailed(client, args);
+                client.OnAdFailedToLoad(client, args);
             }
         }
 
@@ -170,9 +169,9 @@ namespace ZPLAYAds.iOS
         static void RewardVideoVideoDidCloseCallback(IntPtr interstitialClient)
         {
             RewardVideoClient client = IntPtrToRewardVideoClient(interstitialClient);
-            if (client.OnAdVideoCompleted != null)
+            if (client.OnAdClosed != null)
             {
-                client.OnAdVideoCompleted(client, EventArgs.Empty);
+                client.OnAdClosed(client, EventArgs.Empty);
             }
         }
 
@@ -180,9 +179,9 @@ namespace ZPLAYAds.iOS
         static void RewardVideoDidCompleteCallback(IntPtr interstitialClient)
         {
             RewardVideoClient client = IntPtrToRewardVideoClient(interstitialClient);
-            if (client.OnAdCompleted != null)
+            if (client.OnAdVideoFinished != null)
             {
-                client.OnAdCompleted(client, EventArgs.Empty);
+                client.OnAdVideoFinished(client, EventArgs.Empty);
             }
         }
 
