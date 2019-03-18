@@ -88,15 +88,16 @@
 
 /// Tells the delegate that the ad is being fully played.
 - (void)playableAdsDidEndPlaying:(PlayableAds *)ads {
-    if (self.videoDidCloseCallback) {
-        self.videoDidCloseCallback(self.interstitialClient);
+    if (self.videoDidCompleteCallback) {
+        self.videoDidCompleteCallback(self.interstitialClient);
     }
 }
 
 /// Tells the delegate that the ad did animate off the screen.
 - (void)playableAdsDidDismissScreen:(PlayableAds *)ads {
-    if (self.adDidCompleteCallback) {
-        self.adDidCompleteCallback(self.interstitialClient);
+    
+    if (self.adDidCloseCallback) {
+        self.adDidCloseCallback(self.interstitialClient);
     }
 }
 
