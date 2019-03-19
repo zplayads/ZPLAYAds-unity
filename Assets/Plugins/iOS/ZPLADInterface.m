@@ -48,8 +48,8 @@ void ZPLADSetInterstitialAdCallbacks(
     internalInterstitialAd.adFailedCallback = adFailedCallback;
     internalInterstitialAd.videoDidStartCallback = videoDidStartCallback;
     internalInterstitialAd.adClickedCallback = adClickedCallback;
-    internalInterstitialAd.videoDidCloseCallback = videoDidCloseCallback;
-    internalInterstitialAd.adDidCompleteCallback = adDidCompleteCallback;
+    internalInterstitialAd.adDidCloseCallback = videoDidCloseCallback;
+    internalInterstitialAd.videoDidCompleteCallback = adDidCompleteCallback;
 }
 
 /// Makes an interstitial ad request.
@@ -112,8 +112,8 @@ void ZPLADSetRewardVideoAdCallbacks(
     internalRewardVideoAd.videoDidStartCallback = videoDidStartCallback;
     internalRewardVideoAd.adClickedCallback = adClickedCallback;
     internalRewardVideoAd.adRewardCallback = adDidRewardCallback;
-    internalRewardVideoAd.videoDidCloseCallback = videoDidCloseCallback;
-    internalRewardVideoAd.adDidCompleteCallback = adDidCompleteCallback;
+    internalRewardVideoAd.adDidCloseCallback = videoDidCloseCallback;
+    internalRewardVideoAd.videoDidCompleteCallback = adDidCompleteCallback;
 }
 
 /// Makes an reward video ad request.

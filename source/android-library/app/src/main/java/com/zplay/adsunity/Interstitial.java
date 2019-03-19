@@ -16,8 +16,6 @@
 
 package com.zplay.adsunity;
 
-import com.zplay.adsunity.UnityInterstitialAdListener;
-
 import android.app.Activity;
 
 import com.playableads.PlayLoadingListener;
@@ -26,7 +24,7 @@ import com.playableads.PlayableInterstitial;
 import com.playableads.SimplePlayLoadingListener;
 
 public class Interstitial {
-    
+
     private PlayableInterstitial interstitial;
     private Activity activity;
     private UnityInterstitialAdListener adListener;
@@ -69,6 +67,15 @@ public class Interstitial {
             @Override
             public void run() {
                 interstitial.setAutoload(autoLoad);
+            }
+        });
+    }
+
+    public void setChannelId(final String channelId) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                interstitial.setChannelId(channelId);
             }
         });
     }

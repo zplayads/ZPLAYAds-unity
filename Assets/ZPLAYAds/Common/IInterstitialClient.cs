@@ -5,20 +5,20 @@ namespace ZPLAYAds.Common
     public interface IInterstitialClient
     {
         event EventHandler<EventArgs> OnAdLoaded;
-        event EventHandler<AdFailedEventArgs> OnAdFailed;
+        event EventHandler<AdFailedEventArgs> OnAdFailedToLoad;
         event EventHandler<EventArgs> OnAdStarted;
         event EventHandler<EventArgs> OnAdClicked;
-        event EventHandler<EventArgs> OnAdVideoCompleted;
-        event EventHandler<EventArgs> OnAdCompleted;
+        event EventHandler<EventArgs> OnAdVideoFinished;
+        event EventHandler<EventArgs> OnAdClosed;
 
         void LoadAd(string adUnitId);
 
-        bool IsLoaded(string adUnitId);
+        bool IsReady(string adUnitId);
 
         void Show(string adUnitId);
 
-        void SetAutoloadNext(bool autoload);
-
         void SetChannelId(string channelId);
+
+        void SetAutoloadNext(bool autoLoad);
     }
 }

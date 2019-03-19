@@ -2,30 +2,32 @@
 using UnityEngine;
 using ZPLAYAds.Api;
 using ZPLAYAds.Common;
+using ZPLAYAds;
 public class ZPLAYAdsDemoScript : MonoBehaviour
 {
     RewardVideoAd rewardVideo;
     InterstitialAd interstitial;
     void Start()
     {
-        rewardVideo = new RewardVideoAd(GlobleSettings.GetAppID, GlobleSettings.GetRewardVideoUnitID);
-        rewardVideo.SetAutoloadNext(GlobleSettings.IsAutoload);
+        AdOptions adOptions = new AdOptionsBuilder()
+            .SetChannelId(GlobleSettings.GetChannelId)
+            .SetAutoLoadNext(GlobleSettings.IsAutoload)
+            .build();
+
+        rewardVideo = new RewardVideoAd(GlobleSettings.GetAppID, GlobleSettings.GetRewardVideoUnitID, adOptions);
         rewardVideo.OnAdLoaded += HandleRewardVideoLoaded;
-        rewardVideo.OnAdFailed += HandleRewardVideoFailed;
+        rewardVideo.OnAdFailedToLoad += HandleRewardVideoFailedToLoad;
         rewardVideo.OnAdStarted += HandleRewardVideoStart;
-        rewardVideo.OnAdVideoCompleted += HandleRewardVideoVideoCompleted;
         rewardVideo.OnAdClicked += HandleRewardVideoClicked;
         rewardVideo.OnAdRewarded += HandleRewardVideoRewarded;
-        rewardVideo.OnAdCompleted += HandleRewardVideoCompleted;
+        rewardVideo.OnAdClosed += HandleRewardVideoClosed;
 
-        interstitial = new InterstitialAd(GlobleSettings.GetAppID, GlobleSettings.GetInterstitialUnitID);
-        interstitial.SetAutoloadNext(GlobleSettings.IsAutoload);
+        interstitial = new InterstitialAd(GlobleSettings.GetAppID, GlobleSettings.GetInterstitialUnitID, adOptions);
         interstitial.OnAdLoaded += HandleInterstitialLoaded;
-        interstitial.OnAdFailed += HandleInterstitialFailed;
+        interstitial.OnAdFailedToLoad += HandleInterstitialFailedToLoad;
         interstitial.OnAdStarted += HandleInterstitialStart;
-        interstitial.OnAdVideoCompleted += HandleInterstitialVideoCompleted;
         interstitial.OnAdClicked += HandleInterstitialClicked;
-        interstitial.OnAdCompleted += HandleInterstitialCompleted;
+        interstitial.OnAdClosed += HandleInterstitialClosed;
     }
 
     // Update is called once per frame
@@ -73,7 +75,7 @@ public class ZPLAYAdsDemoScript : MonoBehaviour
 
     void ShowRewarVideo(string adUnitId)
     {
-        if (rewardVideo.IsLoaded(adUnitId))
+        if (rewardVideo.IsReady(adUnitId))
         {
             rewardVideo.Show(adUnitId);
         }
@@ -90,7 +92,7 @@ public class ZPLAYAdsDemoScript : MonoBehaviour
 
     void ShowInterstitial(string adUnitId)
     {
-        if (interstitial.IsLoaded(adUnitId))
+        if (interstitial.IsReady(adUnitId))
         {
             interstitial.Show(adUnitId);
         }
@@ -107,19 +109,14 @@ public class ZPLAYAdsDemoScript : MonoBehaviour
         print("===> HandleRewardVideoLoaded event received");
     }
 
-    public void HandleRewardVideoFailed(object sender, AdFailedEventArgs args)
+    public void HandleRewardVideoFailedToLoad(object sender, AdFailedEventArgs args)
     {
-        print("===> HandleRewardVideoFailed event received with message: " + args.Message);
+        print("===> HandleRewardVideoFailedToLoad event received with message: " + args.Message);
     }
 
     public void HandleRewardVideoStart(object sender, EventArgs args)
     {
         print("===> HandleRewardVideoStart event received.");
-    }
-
-    public void HandleRewardVideoVideoCompleted(object sender, EventArgs args)
-    {
-        print("===> HandleRewardVideoVideoCompleted event received.");
     }
 
     public void HandleRewardVideoClicked(object sender, EventArgs args)
@@ -134,9 +131,9 @@ public class ZPLAYAdsDemoScript : MonoBehaviour
     }
 
 
-    public void HandleRewardVideoCompleted(object sender, EventArgs args)
+    public void HandleRewardVideoClosed(object sender, EventArgs args)
     {
-        print("===> HandleRewardVideoCompleted event received.");
+        print("===> HandleRewardVideoClosed event received.");
     }
 
     #endregion
@@ -149,19 +146,14 @@ public class ZPLAYAdsDemoScript : MonoBehaviour
         print("===> HandleInterstitialLoaded event received");
     }
 
-    public void HandleInterstitialFailed(object sender, AdFailedEventArgs args)
+    public void HandleInterstitialFailedToLoad(object sender, AdFailedEventArgs args)
     {
-        print("===> HandleInterstitialFailed event received with message: " + args.Message);
+        print("===> HandleInterstitialFailedToLoad event received with message: " + args.Message);
     }
 
     public void HandleInterstitialStart(object sender, EventArgs args)
     {
         print("===> HandleInterstitialStart event received.");
-    }
-
-    public void HandleInterstitialVideoCompleted(object sender, EventArgs args)
-    {
-        print("===> HandleInterstitialVideoCompleted event received.");
     }
 
     public void HandleInterstitialClicked(object sender, EventArgs args)
@@ -170,7 +162,7 @@ public class ZPLAYAdsDemoScript : MonoBehaviour
     }
 
 
-    public void HandleInterstitialCompleted(object sender, EventArgs args)
+    public void HandleInterstitialClosed(object sender, EventArgs args)
     {
         print("===> HandleInterstitialClosed event received.");
     }

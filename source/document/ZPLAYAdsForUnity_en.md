@@ -9,12 +9,12 @@
     - [Interstitial](#interstitial)
       - [Initialize and Request Interstitial](#initialize-and-request-interstitial)
       - [Request Interstitial](#request-interstitial)
-      - [Judge Whether Interstitial Has Been Loaded](#judge-whether-interstitial-has-been-loaded)
+      - [Determine If Interstitial Has Been Loaded](#determine-if-interstitial-has-been-loaded)
       - [Present Interstitial](#present-interstitial)
     - [Rewarded Video](#rewarded-video)
       - [Initialize and Request Rewarded Video](#initialize-and-request-rewarded-video)
       - [Request Rewarded Video](#request-rewarded-video)
-      - [Judge Whether Rewarded Video Has Been Loaded](#judge-whether-rewarded-video-has-been-loaded)
+      - [Determine If Rewarded Video Has Been Loaded](#determine-if-rewarded-video-has-been-loaded)
       - [Present Rewarded Video](#present-rewarded-video)
   - [Test](#test)
 
@@ -92,29 +92,32 @@ using ZPLAYAds.Api;
 using ZPLAYAds.Common;
 public class ZPLAYAdsDemoScript : MonoBehaviour
 {
-  #if UNITY_ANDROID
-   const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_ANDROID";
-   const string ZPLAYADS_UNIT_ID_INTERSTITIAL = "YOUR_ZPLAYAds_UNIT_ID_INTERSTITIAL_ANDROID";
-  #elif UNITY_IOS
-   const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_IOS";
-   const string ZPLAYADS_UNIT_ID_INTERSTITIAL = "YOUR_ZPLAYAds_UNIT_ID_INTERSTITIAL_IOS";
-  #else
-   const string ZPLAYADS_APP_ID = "unexpected_platform";
-   const string ZPLAYADS_UNIT_ID_INTERSTITIAL = "unexpected_platform";
-  #endif
+#if UNITY_ANDROID
+  const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_ANDROID";
+  const string ZPLAYADS_UNIT_ID_INTERSTITIAL = "YOUR_ZPLAYAds_UNIT_ID_INTERSTITIAL_ANDROID";
+#elif UNITY_IOS
+  const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_IOS";
+  const string ZPLAYADS_UNIT_ID_INTERSTITIAL = "YOUR_ZPLAYAds_UNIT_ID_INTERSTITIAL_IOS";
+#else
+  const string ZPLAYADS_APP_ID = "unexpected_platform";
+  const string ZPLAYADS_UNIT_ID_INTERSTITIAL = "unexpected_platform";
+#endif
 
   InterstitialAd interstitial;
 
   void Start() 
   {
-    interstitial = new InterstitialAd(ZPLAYADS_APP_ID, ZPLAYADS_UNIT_ID_INTERSTITIAL);
-    interstitial.SetAutoloadNext(true);
+    AdOptions adOptions = new AdOptionsBuilder()
+      .SetChannelId("")
+      .SetAutoLoadNext(true)
+      .build();
+
+    interstitial = new InterstitialAd(ZPLAYADS_APP_ID, ZPLAYADS_UNIT_ID_INTERSTITIAL, adOptions);
     interstitial.OnAdLoaded += HandleInterstitialLoaded;
-    interstitial.OnAdFailed += HandleInterstitialFailed;
+    interstitial.OnAdFailedToLoad += HandleInterstitialFailedToLoad;
     interstitial.OnAdStarted += HandleInterstitialStart;
-    interstitial.OnAdVideoCompleted += HandleInterstitialVideoCompleted;
     interstitial.OnAdClicked += HandleInterstitialClicked;
-    interstitial.OnAdCompleted += HandleInterstitialCompleted;
+    interstitial.OnAdClosed += HandleInterstitialClosed;
   }
   
   #region Interstitial callback handlers
@@ -122,23 +125,19 @@ public class ZPLAYAdsDemoScript : MonoBehaviour
   {
     print("===> HandleInterstitialLoaded event received");
   }
-  public void HandleInterstitialFailed(object sender, AdFailedEventArgs args)
+  public void HandleInterstitialFailedToLoad(object sender, AdFailedEventArgs args)
   {
-    print("===> HandleInterstitialFailed event received with message: " + args.Message);
+    print("===> HandleInterstitialFailedToLoad event received with message: " + args.Message);
   }
   public void HandleInterstitialStart(object sender, EventArgs args)
   {
     print("===> HandleInterstitialStart event received.");
   }
-  public void HandleInterstitialVideoCompleted(object sender, EventArgs args)
-  {
-    print("===> HandleInterstitialVideoCompleted event received.");
-  }
   public void HandleInterstitialClicked(object sender, EventArgs args)
   {
     print("===> HandleInterstitialClicked event received.");
   }
-  public void HandleInterstitialCompleted(object sender, EventArgs args)
+  public void HandleInterstitialClosed(object sender, EventArgs args)
   {
     print("===> HandleInterstitialClosed event received.");
   }
@@ -148,24 +147,24 @@ public class ZPLAYAdsDemoScript : MonoBehaviour
 
 #### Request Interstitial
 
-If you open autoload ```interstitial.SetAutoloadNext(true)``` mode, after first request, the SDK will request the next ad automatically when an ad has been completed or request failure. 
+If you open autoload mode, after first request, the SDK will request the next ad automatically when an ad has been completed or request failed. 
 
 ```C#
 interstitial.LoadAd(ZPLAYADS_UNIT_ID_INTERSTITIAL);
 ```
 
-#### Judge Whether Interstitial Has Been Loaded
+#### Determine If Interstitial Has Been Loaded
 
 ```c#
-interstitial.IsLoaded(ZPLAYADS_UNIT_ID_INTERSTITIAL)
+interstitial.IsReady(ZPLAYADS_UNIT_ID_INTERSTITIAL)
 ```
 
 #### Present Interstitial
 
-We suggest you call ```interstitial.IsLoaded(ZPLAYADS_UNIT_ID_INTERSTITIAL)``` first to judge whether Interstitial has been loaded
+We recommend you call ```interstitial.IsReady(ZPLAYADS_UNIT_ID_INTERSTITIAL)``` before showing an interstitial to determine if the ad is ready.
 
 ```C#
-if(interstitial.IsLoaded(ZPLAYADS_UNIT_ID_INTERSTITIAL))
+if(interstitial.IsReady(ZPLAYADS_UNIT_ID_INTERSTITIAL))
 {
   interstitial.Show(ZPLAYADS_UNIT_ID_INTERSTITIAL);
 }
@@ -180,82 +179,81 @@ using ZPLAYAds.Api;
 using ZPLAYAds.Common;
 public class ZPLAYAdsDemoScript : MonoBehaviour
 {
-  #if UNITY_ANDROID
-   const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_ANDROID";
-   const string ZPLAYADS_UNIT_ID_REWARD_VIDEO = "YOUR_ZPLAYAds_UNIT_ID_REWARD_VIDEO_ANDROID";
-  #elif UNITY_IOS
-   const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_IOS";
-   const string ZPLAYADS_UNIT_ID_REWARD_VIDEO = "YOUR_ZPLAYAds_UNIT_ID_REWARD_VIDEO_IOS";
-  #else
-   const string ZPLAYADS_APP_ID = "unexpected_platform";
-   const string ZPLAYADS_UNIT_ID_REWARD_VIDEO = "unexpected_platform";
-  #endif
+#if UNITY_ANDROID
+  const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_ANDROID";
+  const string ZPLAYADS_UNIT_ID_REWARD_VIDEO = "YOUR_ZPLAYAds_UNIT_ID_REWARD_VIDEO_ANDROID";
+#elif UNITY_IOS
+  const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_IOS";
+  const string ZPLAYADS_UNIT_ID_REWARD_VIDEO = "YOUR_ZPLAYAds_UNIT_ID_REWARD_VIDEO_IOS";
+#else
+  const string ZPLAYADS_APP_ID = "unexpected_platform";
+  const string ZPLAYADS_UNIT_ID_REWARD_VIDEO = "unexpected_platform";
+#endif
 
   RewardVideoAd rewardVideo;
 
   void Start() 
   {
-    rewardVideo = new RewardVideoAd(ZPLAYADS_APP_ID, ZPLAYADS_UNIT_ID_REWARD_VIDEO);
-    rewardVideo.SetAutoloadNext(true);
+    AdOptions adOptions = new AdOptionsBuilder()
+      .SetChannelId("")
+      .SetAutoLoadNext(true)
+      .build();
+
+    rewardVideo = new RewardVideoAd(ZPLAYADS_APP_ID, ZPLAYADS_UNIT_ID_REWARD_VIDEO, adOptions);
     rewardVideo.OnAdLoaded += HandleRewardVideoLoaded;
-    rewardVideo.OnAdFailed += HandleRewardVideoFailed;
+    rewardVideo.OnAdFailedToLoad += HandleRewardVideoFailedToLoad;
     rewardVideo.OnAdStarted += HandleRewardVideoStart;
-    rewardVideo.OnAdVideoCompleted += HandleRewardVideoVideoCompleted;
     rewardVideo.OnAdClicked += HandleRewardVideoClicked;
     rewardVideo.OnAdRewarded += HandleRewardVideoRewarded;
-    rewardVideo.OnAdCompleted += HandleRewardVideoCompleted;
+    rewardVideo.OnAdClosed += HandleRewardVideoClosed;
   }
 
   #region RewardVideo callback handlers
   public void HandleRewardVideoLoaded(object sender, EventArgs args)
   {
-      print("===> HandleRewardVideoLoaded event received");
+    print("===> HandleRewardVideoLoaded event received");
   }
-  public void HandleRewardVideoFailed(object sender, AdFailedEventArgs args)
+  public void HandleRewardVideoFailedToLoad(object sender, AdFailedEventArgs args)
   {
-      print("===> HandleRewardVideoFailed event received with message: " + args.Message);
+    print("===> HandleRewardVideoFailedToLoad event received with message: " + args.Message);
   }
   public void HandleRewardVideoStart(object sender, EventArgs args)
   {
-      print("===> HandleRewardVideoStart event received.");
-  }
-  public void HandleRewardVideoVideoCompleted(object sender, EventArgs args)
-  {
-      print("===> HandleRewardVideoVideoCompleted event received.");
+    print("===> HandleRewardVideoStart event received.");
   }
   public void HandleRewardVideoClicked(object sender, EventArgs args)
   {
-      print("===> HandleRewardVideoClicked event received.");
+    print("===> HandleRewardVideoClicked event received.");
   }
   public void HandleRewardVideoRewarded(object sender, EventArgs args)
   {
-      print("===> HandleRewardVideoRewarded event received.");
+    print("===> HandleRewardVideoRewarded event received.");
   }
-  public void HandleRewardVideoCompleted(object sender, EventArgs args)
+  public void HandleRewardVideoClosed(object sender, EventArgs args)
   {
-      print("===> HandleRewardVideoCompleted event received.");
+    print("===> HandleRewardVideoClosed event received.");
   }
   #endregion
 }
 ```
 
 #### Request Rewarded Video
-If you open autoload ```interstitial.SetAutoloadNext(true)``` mode, after first request, the SDK will request the next ad automatically when an ad has been completed or request failure. 
+If you open autoload mode, after first request, the SDK will request the next ad automatically when an ad has been completed or request failed. 
 
 ```C#
 rewardVideo.LoadAd(ZPLAYADS_UNIT_ID_REWARD_VIDEO);
 ```
 
-#### Judge Whether Rewarded Video Has Been Loaded
+#### Determine If Rewarded Video Has Been Loaded
 
 ```c#
-rewardVideo.IsLoaded(ZPLAYADS_UNIT_ID_REWARD_VIDEO)
+rewardVideo.IsReady(ZPLAYADS_UNIT_ID_REWARD_VIDEO)
 ```
 
 #### Present Rewarded Video
 
 ```c#
-if(rewardVideo.IsLoaded(ZPLAYADS_UNIT_ID_REWARD_VIDEO))
+if(rewardVideo.IsReady(ZPLAYADS_UNIT_ID_REWARD_VIDEO))
 {
   rewardVideo.Show(ZPLAYADS_UNIT_ID_REWARD_VIDEO);
 } 
