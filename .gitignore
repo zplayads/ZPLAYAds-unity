@@ -106,3 +106,8 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+
+Assets/Plugins/Android/android.arch*
+Assets/Plugins/Android/com.android*
+Assets/Plugins/Android/com.google*
+Assets/Plugins/Android/com.playableads*
