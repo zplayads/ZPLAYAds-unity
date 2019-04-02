@@ -10,9 +10,18 @@ namespace ZPLAYAds.Api
 
         IRewardVideoClient client;
 
-        public RewardVideoAd(string adAppId, string adUnitId)
+        // Creates RewardVideoAd instance.
+        public RewardVideoAd(string adAppId, string adUnitId, AdOptions adOptions)
         {
             client = ZPLAYAdsClientFactory.BuildRewardVideoClient(adAppId, adUnitId);
+
+            if (adOptions == null)
+            {
+                adOptions = new AdOptionsBuilder().build();
+            }
+            client.SetChannelId(adOptions.mChannelId);
+            client.SetAutoloadNext(adOptions.isAutoLoad);
+
             client.OnAdLoaded += (sender, args) =>
             {
                 if (OnAdLoaded != null)
@@ -21,11 +30,11 @@ namespace ZPLAYAds.Api
                 }
             };
 
-            client.OnAdFailed += (sender, args) =>
+            client.OnAdFailedToLoad += (sender, args) =>
             {
-                if (OnAdFailed != null)
+                if (OnAdFailedToLoad != null)
                 {
-                    OnAdFailed(this, args);
+                    OnAdFailedToLoad(this, args);
                 }
             };
 
@@ -34,14 +43,6 @@ namespace ZPLAYAds.Api
                 if (OnAdStarted != null)
                 {
                     OnAdStarted(this, args);
-                }
-            };
-
-            client.OnAdVideoCompleted += (sender, args) =>
-            {
-                if (OnAdVideoCompleted != null)
-                {
-                    OnAdVideoCompleted(this, args);
                 }
             };
 
@@ -61,24 +62,28 @@ namespace ZPLAYAds.Api
                 }
             };
 
-            client.OnAdCompleted += (sender, args) =>
+            client.OnAdClosed += (sender, args) =>
             {
-                if (OnAdCompleted != null)
+                if (OnAdClosed != null)
                 {
-                    OnAdCompleted(this, args);
+                    OnAdClosed(this, args);
                 }
             };
 
         }
 
-        // These are the ad callback events that can be hooked into.
+        // Ad event fired when the rewarded video ad has loaded.
         public event EventHandler<EventArgs> OnAdLoaded;
-        public event EventHandler<AdFailedEventArgs> OnAdFailed;
+        // Ad event fired when the rewarded video ad has failed to load.
+        public event EventHandler<AdFailedEventArgs> OnAdFailedToLoad;
+        // Ad event fired when the rewarded video ad is started.
         public event EventHandler<EventArgs> OnAdStarted;
+        // Ad event fired when the rewarded video ad has rewarded the user.
         public event EventHandler<EventArgs> OnAdRewarded;
+        // Ad event fired when the rewarded video ad is clicked.
         public event EventHandler<EventArgs> OnAdClicked;
-        public event EventHandler<EventArgs> OnAdVideoCompleted;
-        public event EventHandler<EventArgs> OnAdCompleted;
+        // Ad event fired when the rewarded video ad is closed.
+        public event EventHandler<EventArgs> OnAdClosed;
 
         // Loads a new reward video
         public void LoadAd(string adUnitId)
@@ -87,9 +92,9 @@ namespace ZPLAYAds.Api
         }
 
         // Determines whether the reward video has loaded
-        public bool IsLoaded(string adUnitId)
+        public bool IsReady(string adUnitId)
         {
-            return client.IsLoaded(adUnitId);
+            return client.IsReady(adUnitId);
         }
 
         // Shows the reward video
@@ -98,16 +103,19 @@ namespace ZPLAYAds.Api
             client.Show(adUnitId);
         }
 
-        // Sets whether load the next reward video automatically
+        [Obsolete("SetAutoloadNext is deprecated, please use AdOptions instead.", true)]
         public void SetAutoloadNext(bool autoload)
         {
             client.SetAutoloadNext(autoload);
         }
 
-        // Sets the channel id
+        [Obsolete("SetChannelId is deprecated, please use AdOptions instead.", true)]
         public void SetChannelId(string channelId)
         {
             client.SetChannelId(channelId);
         }
+
+        [Obsolete("OnAdVideoCompleted no more supported.", true)]
+        public event EventHandler<EventArgs> OnAdVideoCompleted;
     }
 }

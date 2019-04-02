@@ -17,12 +17,12 @@ namespace ZPLAYAds.Common
         // Disable warnings for unused dummy ad events.
 #pragma warning disable 67
         public event EventHandler<EventArgs> OnAdLoaded;
-        public event EventHandler<AdFailedEventArgs> OnAdFailed;
+        public event EventHandler<AdFailedEventArgs> OnAdFailedToLoad;
         public event EventHandler<EventArgs> OnAdStarted;
         public event EventHandler<EventArgs> OnAdClicked;
         public event EventHandler<EventArgs> OnAdRewarded;
-        public event EventHandler<EventArgs> OnAdVideoCompleted;
-        public event EventHandler<EventArgs> OnAdCompleted;
+        public event EventHandler<EventArgs> OnAdVideoFinished;
+        public event EventHandler<EventArgs> OnAdClosed;
 #pragma warning restore 67
 
         public void LoadAd(string adUnitId)
@@ -30,7 +30,7 @@ namespace ZPLAYAds.Common
             Debug.Log("Dummy " + MethodBase.GetCurrentMethod().Name);
         }
 
-        public bool IsLoaded(string adUnitId)
+        public bool IsReady(string adUnitId)
         {
             Debug.Log("Dummy " + MethodBase.GetCurrentMethod().Name);
             return true;

@@ -46,10 +46,10 @@
 @property(nonatomic, assign) ZPLADInterstitiaDidClickCallback adClickedCallback;
 
 /// The ad was closed callback into Unity
-@property(nonatomic, assign) ZPLADInterstitialVideoDidCloseCallback videoDidCloseCallback;
+@property(nonatomic, assign) ZPLADInterstitialVideoDidCloseCallback adDidCloseCallback;
 
 /// The ad did complete callback into Unity.
-@property(nonatomic, assign) ZPLADInterstitialDidCompleteCallback adDidCompleteCallback;
+@property(nonatomic, assign) ZPLADInterstitialDidCompleteCallback videoDidCompleteCallback;
 
 - (void)loadAd;
 

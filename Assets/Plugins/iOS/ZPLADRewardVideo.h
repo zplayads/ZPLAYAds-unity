@@ -46,10 +46,10 @@
 @property(nonatomic, assign) ZPLADRewardVideoDidRewardCallback adRewardCallback;
 
 /// The ad was closed callback into Unity.
-@property(nonatomic, assign) ZPLADRewardVideoVideoDidCloseCallback videoDidCloseCallback;
+@property(nonatomic, assign) ZPLADRewardVideoVideoDidCloseCallback adDidCloseCallback;
 
 /// The ad did complete callback into Unity.
-@property(nonatomic, assign) ZPLADRewardVideoDidCompleteCallback adDidCompleteCallback;
+@property(nonatomic, assign) ZPLADRewardVideoDidCompleteCallback videoDidCompleteCallback;
 
 - (void)loadAd;
 

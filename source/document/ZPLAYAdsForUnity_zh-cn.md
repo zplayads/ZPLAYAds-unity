@@ -1,22 +1,22 @@
-* [ZPLAYAds for Unity](#zplayads-for-unity)
-  * [概述](#概述)
-  * [下载ZPLAYAds Unity插件](#下载zplayads-unity插件)
-  * [导入ZPLAYAds Unity插件](#导入zplayads-unity插件)
-  * [集成ZPLAYAds](#集成zplayads)
-      * [部署iOS项目](#部署ios项目)
-      * [部署Android项目](#部署android项目)
-  * [选择广告形式](#选择广告形式)
-      * [Interstitial](#interstitial)
-        * [初始化及请求插屏](#初始化及请求插屏)
-        * [请求Interstitial](#请求interstitial)
-        * [判断Interstitial是否准备好](#判断interstitial是否准备好)
-        * [展示Interstitial](#展示interstitial)
-      * [Rewarded Video](#rewarded-video)
-        * [初始化及请求视频](#初始化及请求视频)
-        * [请求Rewarded Video](#请求rewarded-video)
-        * [判断Rewarded Video是否准备好](#判断rewarded-video是否准备好)
-        * [展示Rewarded Video](#展示rewarded-video)
-  * [测试](#测试)
+- [ZPLAYAds for Unity](#zplayads-for-unity)
+  - [概述](#%E6%A6%82%E8%BF%B0)
+  - [下载ZPLAYAds Unity插件](#%E4%B8%8B%E8%BD%BDzplayads-unity%E6%8F%92%E4%BB%B6)
+  - [导入ZPLAYAds Unity插件](#%E5%AF%BC%E5%85%A5zplayads-unity%E6%8F%92%E4%BB%B6)
+  - [集成ZPLAYAds](#%E9%9B%86%E6%88%90zplayads)
+    - [部署iOS项目](#%E9%83%A8%E7%BD%B2ios%E9%A1%B9%E7%9B%AE)
+    - [部署Android项目](#%E9%83%A8%E7%BD%B2android%E9%A1%B9%E7%9B%AE)
+  - [选择广告形式](#%E9%80%89%E6%8B%A9%E5%B9%BF%E5%91%8A%E5%BD%A2%E5%BC%8F)
+    - [Interstitial](#interstitial)
+      - [初始化及请求插屏](#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%8A%E8%AF%B7%E6%B1%82%E6%8F%92%E5%B1%8F)
+      - [请求Interstitial](#%E8%AF%B7%E6%B1%82interstitial)
+      - [判断Interstitial是否准备好](#%E5%88%A4%E6%96%ADinterstitial%E6%98%AF%E5%90%A6%E5%87%86%E5%A4%87%E5%A5%BD)
+      - [展示Interstitial](#%E5%B1%95%E7%A4%BAinterstitial)
+    - [Rewarded Video](#rewarded-video)
+      - [初始化及请求视频](#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%8A%E8%AF%B7%E6%B1%82%E8%A7%86%E9%A2%91)
+      - [请求Rewarded Video](#%E8%AF%B7%E6%B1%82rewarded-video)
+      - [判断Rewarded Video是否准备好](#%E5%88%A4%E6%96%ADrewarded-video%E6%98%AF%E5%90%A6%E5%87%86%E5%A4%87%E5%A5%BD)
+      - [展示Rewarded Video](#%E5%B1%95%E7%A4%BArewarded-video)
+  - [测试](#%E6%B5%8B%E8%AF%95)
 
 # ZPLAYAds for Unity
 
@@ -47,7 +47,7 @@
 
 ## 下载ZPLAYAds Unity插件
 
-ZPLAYAds Unity插件使Unity开发人员可以轻松地在 Android 和 iOS 应用上展示广告，无需编写 Java 或 Objective-C 代码。该插件提供了一个 C# 接口来请求广告。您可以[下载ZPLAYAds Unity插件包](https://github.com/zplayads/ZPLAYAds-unity/raw/master/source/ZPLAYAds.unitypackage)或在GitHub上查看代码。（[Android代码](source/android-library/app/src/main/java/com/zplay/adsunity)、[iOS代码](../../Assets/Plugins/iOS)、[查看源码](Assets/ZPLAYAds)）
+ZPLAYAds Unity插件使Unity开发人员可以轻松地在 Android 和 iOS 应用上展示广告，无需编写 Java 或 Objective-C 代码。该插件提供了一个 C# 接口来请求广告。您可以[下载ZPLAYAds Unity插件包](https://github.com/zplayads/ZPLAYAds-unity/raw/master/source/ZPLAYAds.unitypackage)或在GitHub上查看代码。（[Android代码](../android-library/app/src/main/java/com/zplay/adsunity)、[iOS代码](../../Assets/Plugins/iOS)、[查看源码](../../Assets/ZPLAYAds)）
 
 ## 导入ZPLAYAds Unity插件
 
@@ -94,53 +94,52 @@ using ZPLAYAds.Api;
 using ZPLAYAds.Common;
 public class ZPLAYAdsDemoScript : MonoBehaviour
 {
-  #if UNITY_ANDROID
-   const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_ANDROID";
-   const string ZPLAYADS_UNIT_ID_INTERSTITIAL = "YOUR_ZPLAYAds_UNIT_ID_INTERSTITIAL_ANDROID";
-  #elif UNITY_IOS
-   const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_IOS";
-   const string ZPLAYADS_UNIT_ID_INTERSTITIAL = "YOUR_ZPLAYAds_UNIT_ID_INTERSTITIAL_IOS";
-  #else
-   const string ZPLAYADS_APP_ID = "unexpected_platform";
-   const string ZPLAYADS_UNIT_ID_INTERSTITIAL = "unexpected_platform";
-  #endif
+#if UNITY_ANDROID
+  const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_ANDROID";
+  const string ZPLAYADS_UNIT_ID_INTERSTITIAL = "YOUR_ZPLAYAds_UNIT_ID_INTERSTITIAL_ANDROID";
+#elif UNITY_IOS
+  const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_IOS";
+  const string ZPLAYADS_UNIT_ID_INTERSTITIAL = "YOUR_ZPLAYAds_UNIT_ID_INTERSTITIAL_IOS";
+#else
+  const string ZPLAYADS_APP_ID = "unexpected_platform";
+  const string ZPLAYADS_UNIT_ID_INTERSTITIAL = "unexpected_platform";
+#endif
 
   InterstitialAd interstitial;
 
   void Start() 
   {
-    interstitial = new InterstitialAd(ZPLAYADS_APP_ID, ZPLAYADS_UNIT_ID_INTERSTITIAL);
-    interstitial.SetAutoloadNext(true);
+    AdOptions adOptions = new AdOptionsBuilder()
+      .SetChannelId("")
+      .SetAutoLoadNext(true)
+      .build();
+
+    interstitial = new InterstitialAd(ZPLAYADS_APP_ID, ZPLAYADS_UNIT_ID_INTERSTITIAL, adOptions);
     interstitial.OnAdLoaded += HandleInterstitialLoaded;
-    interstitial.OnAdFailed += HandleInterstitialFailed;
+    interstitial.OnAdFailedToLoad += HandleInterstitialFailedToLoad;
     interstitial.OnAdStarted += HandleInterstitialStart;
-    interstitial.OnAdVideoCompleted += HandleInterstitialVideoCompleted;
     interstitial.OnAdClicked += HandleInterstitialClicked;
-    interstitial.OnAdCompleted += HandleInterstitialCompleted;
+    interstitial.OnAdClosed += HandleInterstitialClosed;
   }
-  
+
   #region Interstitial callback handlers
   public void HandleInterstitialLoaded(object sender, EventArgs args)
   {
     print("===> HandleInterstitialLoaded event received");
   }
-  public void HandleInterstitialFailed(object sender, AdFailedEventArgs args)
+  public void HandleInterstitialFailedToLoad(object sender, AdFailedEventArgs args)
   {
-    print("===> HandleInterstitialFailed event received with message: " + args.Message);
+    print("===> HandleInterstitialFailedToLoad event received with message: " + args.Message);
   }
   public void HandleInterstitialStart(object sender, EventArgs args)
   {
     print("===> HandleInterstitialStart event received.");
   }
-  public void HandleInterstitialVideoCompleted(object sender, EventArgs args)
-  {
-    print("===> HandleInterstitialVideoCompleted event received.");
-  }
   public void HandleInterstitialClicked(object sender, EventArgs args)
   {
     print("===> HandleInterstitialClicked event received.");
   }
-  public void HandleInterstitialCompleted(object sender, EventArgs args)
+  public void HandleInterstitialClosed(object sender, EventArgs args)
   {
     print("===> HandleInterstitialClosed event received.");
   }
@@ -150,7 +149,7 @@ public class ZPLAYAdsDemoScript : MonoBehaviour
 
 #### 请求Interstitial
 
-如果打开自动请求 ```interstitial.SetAutoloadNext(true)``` 模式，首次请求后，SDK 会在展示完成后或广告请求失败后自动请求下一条广告
+如果打开自动请求模式，首次请求后，SDK 会在展示完成后或广告请求失败后自动请求下一条广告
 
 ```C#
 interstitial.LoadAd(ZPLAYADS_UNIT_ID_INTERSTITIAL);
@@ -159,15 +158,15 @@ interstitial.LoadAd(ZPLAYADS_UNIT_ID_INTERSTITIAL);
 #### 判断Interstitial是否准备好
 
 ```c#
-interstitial.IsLoaded(ZPLAYADS_UNIT_ID_INTERSTITIAL)
+interstitial.IsReady(ZPLAYADS_UNIT_ID_INTERSTITIAL)
 ```
 
 #### 展示Interstitial
 
-建议先调用 ```interstitial.IsLoaded(ZPLAYADS_UNIT_ID_INTERSTITIAL)``` 判断插屏是否准备好
+建议先调用 ```interstitial.IsReady(ZPLAYADS_UNIT_ID_INTERSTITIAL)``` 判断插屏是否准备好
 
 ```C#
-if(interstitial.IsLoaded(ZPLAYADS_UNIT_ID_INTERSTITIAL))
+if(interstitial.IsReady(ZPLAYADS_UNIT_ID_INTERSTITIAL))
 {
   interstitial.Show(ZPLAYADS_UNIT_ID_INTERSTITIAL);
 }
@@ -182,67 +181,66 @@ using ZPLAYAds.Api;
 using ZPLAYAds.Common;
 public class ZPLAYAdsDemoScript : MonoBehaviour
 {
-  #if UNITY_ANDROID
-   const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_ANDROID";
-   const string ZPLAYADS_UNIT_ID_REWARD_VIDEO = "YOUR_ZPLAYAds_UNIT_ID_REWARD_VIDEO_ANDROID";
-  #elif UNITY_IOS
-   const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_IOS";
-   const string ZPLAYADS_UNIT_ID_REWARD_VIDEO = "YOUR_ZPLAYAds_UNIT_ID_REWARD_VIDEO_IOS";
-  #else
-   const string ZPLAYADS_APP_ID = "unexpected_platform";
-   const string ZPLAYADS_UNIT_ID_REWARD_VIDEO = "unexpected_platform";
-  #endif
+#if UNITY_ANDROID
+  const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_ANDROID";
+  const string ZPLAYADS_UNIT_ID_REWARD_VIDEO = "YOUR_ZPLAYAds_UNIT_ID_REWARD_VIDEO_ANDROID";
+#elif UNITY_IOS
+  const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_IOS";
+  const string ZPLAYADS_UNIT_ID_REWARD_VIDEO = "YOUR_ZPLAYAds_UNIT_ID_REWARD_VIDEO_IOS";
+#else
+  const string ZPLAYADS_APP_ID = "unexpected_platform";
+  const string ZPLAYADS_UNIT_ID_REWARD_VIDEO = "unexpected_platform";
+#endif
 
   RewardVideoAd rewardVideo;
 
   void Start() 
   {
-    rewardVideo = new RewardVideoAd(ZPLAYADS_APP_ID, ZPLAYADS_UNIT_ID_REWARD_VIDEO);
-    rewardVideo.SetAutoloadNext(true);
+    AdOptions adOptions = new AdOptionsBuilder()
+      .SetChannelId("")
+      .SetAutoLoadNext(true)
+      .build();
+
+    rewardVideo = new RewardVideoAd(ZPLAYADS_APP_ID, ZPLAYADS_UNIT_ID_REWARD_VIDEO, adOptions);
     rewardVideo.OnAdLoaded += HandleRewardVideoLoaded;
-    rewardVideo.OnAdFailed += HandleRewardVideoFailed;
+    rewardVideo.OnAdFailedToLoad += HandleRewardVideoFailedToLoad;
     rewardVideo.OnAdStarted += HandleRewardVideoStart;
-    rewardVideo.OnAdVideoCompleted += HandleRewardVideoVideoCompleted;
     rewardVideo.OnAdClicked += HandleRewardVideoClicked;
     rewardVideo.OnAdRewarded += HandleRewardVideoRewarded;
-    rewardVideo.OnAdCompleted += HandleRewardVideoCompleted;
+    rewardVideo.OnAdClosed += HandleRewardVideoClosed;
   }
 
   #region RewardVideo callback handlers
   public void HandleRewardVideoLoaded(object sender, EventArgs args)
   {
-      print("===> HandleRewardVideoLoaded event received");
+    print("===> HandleRewardVideoLoaded event received");
   }
-  public void HandleRewardVideoFailed(object sender, AdFailedEventArgs args)
+  public void HandleRewardVideoFailedToLoad(object sender, AdFailedEventArgs args)
   {
-      print("===> HandleRewardVideoFailed event received with message: " + args.Message);
+    print("===> HandleRewardVideoFailedToLoad event received with message: " + args.Message);
   }
   public void HandleRewardVideoStart(object sender, EventArgs args)
   {
-      print("===> HandleRewardVideoStart event received.");
-  }
-  public void HandleRewardVideoVideoCompleted(object sender, EventArgs args)
-  {
-      print("===> HandleRewardVideoVideoCompleted event received.");
+    print("===> HandleRewardVideoStart event received.");
   }
   public void HandleRewardVideoClicked(object sender, EventArgs args)
   {
-      print("===> HandleRewardVideoClicked event received.");
+    print("===> HandleRewardVideoClicked event received.");
   }
   public void HandleRewardVideoRewarded(object sender, EventArgs args)
   {
-      print("===> HandleRewardVideoRewarded event received.");
+    print("===> HandleRewardVideoRewarded event received.");
   }
-  public void HandleRewardVideoCompleted(object sender, EventArgs args)
+  public void HandleRewardVideoClosed(object sender, EventArgs args)
   {
-      print("===> HandleRewardVideoCompleted event received.");
+    print("===> HandleRewardVideoClosed event received.");
   }
   #endregion
 }
 ```
 
 #### 请求Rewarded Video
-如果打开自动请求 ```rewardVideo.SetAutoloadNext(true)``` 模式，首次请求后，SDK会在展示完成后或广告请求失败后自动请求下一条广告
+如果开启自动请求模式，首次请求后，SDK会在展示完成后或广告请求失败后自动请求下一条广告
 
 ```C#
 rewardVideo.LoadAd(ZPLAYADS_UNIT_ID_REWARD_VIDEO);
@@ -251,13 +249,13 @@ rewardVideo.LoadAd(ZPLAYADS_UNIT_ID_REWARD_VIDEO);
 #### 判断Rewarded Video是否准备好
 
 ```c#
-rewardVideo.IsLoaded(ZPLAYADS_UNIT_ID_REWARD_VIDEO)
+rewardVideo.IsReady(ZPLAYADS_UNIT_ID_REWARD_VIDEO)
 ```
 
 #### 展示Rewarded Video
 
 ```c#
-if(rewardVideo.IsLoaded(ZPLAYADS_UNIT_ID_REWARD_VIDEO))
+if(rewardVideo.IsReady(ZPLAYADS_UNIT_ID_REWARD_VIDEO))
 {
   rewardVideo.Show(ZPLAYADS_UNIT_ID_REWARD_VIDEO);
 } 

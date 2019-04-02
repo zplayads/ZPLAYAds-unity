@@ -29,11 +29,12 @@ namespace ZPLAYAds.iOS
         #endregion
 
         public event EventHandler<EventArgs> OnAdLoaded;
-        public event EventHandler<AdFailedEventArgs> OnAdFailed;
+        public event EventHandler<AdFailedEventArgs> OnAdFailedToLoad;
         public event EventHandler<EventArgs> OnAdStarted;
         public event EventHandler<EventArgs> OnAdClicked;
-        public event EventHandler<EventArgs> OnAdVideoCompleted;
-        public event EventHandler<EventArgs> OnAdCompleted;
+        public event EventHandler<EventArgs> OnAdVideoFinished;
+        public event EventHandler<EventArgs> OnAdClosed;
+
 
         public InterstitialClient(string adAppId, string adUnitId)
         {
@@ -72,7 +73,7 @@ namespace ZPLAYAds.iOS
             Externs.ZPLADRequestInterstitial(InterstitialPtr);
         }
 
-        public bool IsLoaded(string adUnitId)
+        public bool IsReady(string adUnitId)
         {
             return Externs.ZPLADInterstitialReady(InterstitialPtr);
         }
@@ -125,13 +126,13 @@ namespace ZPLAYAds.iOS
         static void InterstitialDidFailToReceiveAdWithErrorCallback(IntPtr interstitialClient, string error)
         {
             InterstitialClient client = IntPtrToInterstitialClient(interstitialClient);
-            if (client.OnAdFailed != null)
+            if (client.OnAdFailedToLoad != null)
             {
                 AdFailedEventArgs args = new AdFailedEventArgs()
                 {
                     Message = error
                 };
-                client.OnAdFailed(client, args);
+                client.OnAdFailedToLoad(client, args);
             }
         }
 
@@ -160,9 +161,9 @@ namespace ZPLAYAds.iOS
         static void InterstitialVideoDidCloseCallback(IntPtr interstitialClient)
         {
             InterstitialClient client = IntPtrToInterstitialClient(interstitialClient);
-            if (client.OnAdVideoCompleted != null)
+            if (client.OnAdClosed != null)
             {
-                client.OnAdVideoCompleted(client, EventArgs.Empty);
+                client.OnAdClosed(client, EventArgs.Empty);
             }
         }
 
@@ -170,9 +171,9 @@ namespace ZPLAYAds.iOS
         static void InterstitialDidCompleteCallback(IntPtr interstitialClient)
         {
             InterstitialClient client = IntPtrToInterstitialClient(interstitialClient);
-            if (client.OnAdCompleted != null)
+            if (client.OnAdVideoFinished != null)
             {
-                client.OnAdCompleted(client, EventArgs.Empty);
+                client.OnAdVideoFinished(client, EventArgs.Empty);
             }
         }
 
