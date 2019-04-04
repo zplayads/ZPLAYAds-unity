@@ -1,6 +1,6 @@
 <dependencies>
   <packages>
-    <package>com.playableads:playableads:2.4.0</package>
+    <package>com.playableads:playableads:2.4.1</package>
   </packages>
   <files>
     <file>Assets/Plugins/Android/android.arch.core.common-1.0.0.jar</file>
@@ -21,6 +21,6 @@
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-gass-11.0.4.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-safetynet-11.0.4.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-tasks-11.0.4.aar</file>
-    <file>Assets/Plugins/Android/com.playableads.playableads-2.4.0.aar</file>
+    <file>Assets/Plugins/Android/com.playableads.playableads-2.4.1.aar</file>
   </files>
 </dependencies>
