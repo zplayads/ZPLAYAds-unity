@@ -19,6 +19,8 @@ namespace ZPLAYAds.Common
         string androidRewardVideoUnitId = "";
         [SerializeField]
         string androidInterstitialUnitId = "";
+        [SerializeField]
+        string androidBannerUnitId = "";
 
 
         [Header("IOS")]
@@ -32,6 +34,8 @@ namespace ZPLAYAds.Common
         string iOSRewardVideoUnitId = "";
         [SerializeField]
         string iOSInterstitialUnitId = "";
+        [SerializeField]
+        string iOSBannerUnitId = "";
 #pragma warning restore 67
 
 
@@ -135,6 +139,19 @@ namespace ZPLAYAds.Common
                 return Instance.androidInterstitialUnitId;
 #elif UNITY_IPHONE
                 return Instance.iOSInterstitialUnitId;
+#else
+                return "";
+#endif
+            }
+        }
+        public static string GetBannerUnitID
+        {
+            get
+            {
+#if UNITY_ANDROID
+                return Instance.androidBannerUnitId;
+#elif UNITY_IPHONE
+                return Instance.iOSBannerUnitId;
 #else
                 return "";
 #endif
