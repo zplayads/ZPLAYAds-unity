@@ -18,6 +18,7 @@
 #import "ZPLADRewardVideo.h"
 #import "ZPLADTypes.h"
 #import "ZPLADObjectCache.h"
+#import "ZPLADBanner.h"
 
 static NSString *ZPLADStringFromUTF8String(const char *bytes) { return bytes ? @(bytes) : nil; }
 
@@ -144,6 +145,60 @@ void ZPLADSetRewardVideoAutoload(ZPLADTypeRewardVideoRef rewardVideo, BOOL autol
 void ZPLADSetRewardVideoChannelId(ZPLADTypeRewardVideoRef rewardVideo, const char *channelId) {
     ZPLADRewardVideo *internalRewardVideo = (__bridge ZPLADRewardVideo *)rewardVideo;
     [internalRewardVideo setChannelId:ZPLADStringFromUTF8String(channelId)];
+}
+
+#pragma mark: Banner method
+AtmosplayTypeBannerRef InitAtmosplayBannerAd(AtmosplayTypeBannerClientRef *bannerRef, const char *adAppID, const char *adUnitID) {
+    
+    ZPLADBanner *banner = [[ZPLADBanner alloc] initWithBannerClientReference:bannerRef adAppId:ZPLADStringFromUTF8String(adAppID) adUnitId:ZPLADStringFromUTF8String(adUnitID)];
+    
+    ZPLADObjectCache *cache = [ZPLADObjectCache sharedInstance];
+    [cache.references setObject:banner forKey:[banner zplad_referenceKey]];
+    return (__bridge AtmosplayTypeBannerRef)banner;
+}
+
+void ShowBannerView(AtmosplayTypeBannerRef bannerView){
+    ZPLADBanner *internalBanner = (__bridge ZPLADBanner *)bannerView;
+    [internalBanner showBannerView];
+}
+void HideBannerView(AtmosplayTypeBannerRef bannerView){
+    ZPLADBanner *internalBanner = (__bridge ZPLADBanner *)bannerView;
+    [internalBanner hideBannerView];
+}
+void DestroyBannerView(AtmosplayTypeBannerRef bannerView){
+    ZPLADBanner *internalBanner = (__bridge ZPLADBanner *)bannerView;
+    [internalBanner removeBannerView];
+}
+void SetBannerAdSize(AtmosplayTypeBannerRef bannerView,AtmosplayAdsBannerSize bannerSize){
+    ZPLADBanner *internalBanner = (__bridge ZPLADBanner *)bannerView;
+    [internalBanner setBannerAdSize:bannerSize];
+}
+
+void SetBannerPosition(AtmosplayTypeBannerRef bannerView,int position){
+    ZPLADBanner *internalBanner = (__bridge ZPLADBanner *)bannerView;
+    [internalBanner setBannerPosition:position];
+}
+void SetBannerChannelID(AtmosplayTypeBannerRef bannerView,const char *channelID){
+    ZPLADBanner *internalBanner = (__bridge ZPLADBanner *)bannerView;
+    [internalBanner setChannelID:ZPLADStringFromUTF8String(channelID)];
+}
+
+/// Sets the banner callback methods to be invoked during banner ad events.
+void SetBannerCallbacks(
+                        AtmosplayTypeBannerRef bannerView,
+                        AtmosplayBannerDidReceiveAdCallback adReceivedCallback,
+                        AtmosplayBannerDidFailToReceiveAdWithErrorCallback adFailedCallback,
+                        AtmosplayBannerDidClickCallback adClickedCallback){
+    ZPLADBanner *internalBanner = (__bridge ZPLADBanner *)bannerView;
+    // set banner property
+    internalBanner.adReceivedCallback = adReceivedCallback;
+    internalBanner.adFailedCallback = adFailedCallback;
+    internalBanner.adClickedCallback = adClickedCallback;
+}
+
+void RequestBannerAd( AtmosplayTypeBannerRef bannerView){
+    ZPLADBanner *internalBanner = (__bridge ZPLADBanner *)bannerView;
+    [internalBanner loadAd];
 }
 
 #pragma mark - Other methods

@@ -53,6 +53,7 @@ typedef void (*ZPLADInterstitialVideoDidCloseCallback)(
 typedef void (*ZPLADInterstitialDidCompleteCallback)(
     ZPLADTypeInterstitialClientRef *interstitialClient);
 
+#pragma mark:RewardVideo
 /// Callback for when a reward video ad request was successfully loaded.
 typedef void (*ZPLADRewardVideoDidReceivedAdCallback)(
     ZPLADTypeRewardVideoClientRef *rewardVideoClient);
@@ -79,3 +80,20 @@ typedef void (*ZPLADRewardVideoVideoDidCloseCallback)(
 /// Callback for when a reward video completes end.
 typedef void (*ZPLADRewardVideoDidCompleteCallback)(
     ZPLADTypeRewardVideoRef *rewardVideoClient);
+
+#pragma mark: banner
+/// Type representing a Unity banner client
+typedef const void *AtmosplayTypeBannerClientRef;
+
+/// Type representing a AtmosplayAdsBanner
+typedef const void *AtmosplayTypeBannerRef;
+
+#pragma mark - banner ads callback
+/// Callback for when a banner ad request was successfully loaded.
+typedef void (*AtmosplayBannerDidReceiveAdCallback)(AtmosplayTypeBannerClientRef *bannerClient);
+
+/// Callback for when a banner ad request failed.
+typedef void (*AtmosplayBannerDidFailToReceiveAdWithErrorCallback)(AtmosplayTypeBannerClientRef *bannerClient, const char *error);
+
+/// Callback for when a full screen view is about to be presented as a result of a banner click.
+typedef void (*AtmosplayBannerDidClickCallback)(AtmosplayTypeBannerClientRef *bannerClient);
