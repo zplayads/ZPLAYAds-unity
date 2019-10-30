@@ -7,6 +7,8 @@ public class ZPLAYAdsDemoScript : MonoBehaviour
 {
     RewardVideoAd rewardVideo;
     InterstitialAd interstitial;
+    BannerView bannerView;
+
     void Start()
     {
         AdOptions adOptions = new AdOptionsBuilder()
@@ -28,6 +30,17 @@ public class ZPLAYAdsDemoScript : MonoBehaviour
         interstitial.OnAdStarted += HandleInterstitialStart;
         interstitial.OnAdClicked += HandleInterstitialClicked;
         interstitial.OnAdClosed += HandleInterstitialClosed;
+
+        BannerViewOptions bannerOptions = new BannerViewOptionsBuilder()
+            .setAdPosition(AdPosition.BOTTOM)
+            .setChannelID(GlobleSettings.GetChannelId)
+            .setBannerSize(BannerAdSize.BANNER_AD_SIZE_320x50)
+            .Build();
+
+        bannerView = new BannerView(GlobleSettings.GetAppID, GlobleSettings.GetBannerUnitID, bannerOptions);
+        bannerView.OnAdLoaded += HandleBannerAdLoaded;
+        bannerView.OnAdFailedToLoad += HandleBannerAdFailedToLoad;
+        bannerView.OnAdClicked += HandleBannerClicked;
     }
 
     // Update is called once per frame
@@ -66,6 +79,32 @@ public class ZPLAYAdsDemoScript : MonoBehaviour
         {
             ShowInterstitial(GlobleSettings.GetInterstitialUnitID);
         }
+        // banner
+        Rect requestBannerRect = new Rect(columnOnePosition, 0.45f * Screen.height, buttonWidth, buttonHeight);
+        if (GUI.Button(requestBannerRect, "Request Banner"))
+        {
+            if (bannerView != null)
+            {
+                bannerView.LoadAd();
+            }
+        }
+        Rect hiddenBannerlRect = new Rect(columnTwoPosition, 0.45f * Screen.height, buttonWidth, buttonHeight);
+        if (GUI.Button(hiddenBannerlRect, "Hide Banenr"))
+        {
+            if (bannerView != null)
+            {
+                bannerView.Hide();
+            }
+        }
+        Rect showBannerlRect = new Rect(columnOnePosition, 0.65f * Screen.height, buttonWidth, buttonHeight);
+        if (GUI.Button(showBannerlRect, "Show Banenr"))
+        {
+            if (bannerView != null)
+            {
+                bannerView.Show();
+            }
+        }
+
     }
 
     void RequestRewarVideo(string adUnitId)
@@ -165,6 +204,24 @@ public class ZPLAYAdsDemoScript : MonoBehaviour
     public void HandleInterstitialClosed(object sender, EventArgs args)
     {
         print("===> HandleInterstitialClosed event received.");
+    }
+
+    #endregion
+    #region Banner callback handlers
+
+    public void HandleBannerAdLoaded(object sender, EventArgs args)
+    {
+        print("===> HandleBannerAdLoaded event received");
+    }
+
+    public void HandleBannerAdFailedToLoad(object sender, AdFailedEventArgs args)
+    {
+        print("===> HandleBannerAdFailedToLoad event received with message: " + args.Message);
+    }
+
+     public void HandleBannerClicked(object sender, EventArgs args)
+    {
+        print("===> HandleBannerClicked event.");
     }
 
     #endregion
