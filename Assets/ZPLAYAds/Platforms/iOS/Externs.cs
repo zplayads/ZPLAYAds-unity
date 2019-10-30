@@ -29,7 +29,7 @@ namespace ZPLAYAds.iOS
 
         #region Interstitial externs
         [DllImport("__Internal")]
-        internal static extern IntPtr ZPLADCreateInterstitial(IntPtr interstitialClient, string adAppId, string adUnityId);
+        internal static extern IntPtr ZPLADCreateInterstitial(IntPtr interstitialClient, string adAppId, string adUnitId);
 
         [DllImport("__Internal")]
         internal static extern void ZPLADSetInterstitialAdCallbacks(
@@ -61,7 +61,7 @@ namespace ZPLAYAds.iOS
 
         #region RewardVideo externs
         [DllImport("__Internal")]
-        internal static extern IntPtr ZPLADCreateRewardVideo(IntPtr rewardVideoClient, string adAppId, string adUnityId);
+        internal static extern IntPtr ZPLADCreateRewardVideo(IntPtr rewardVideoClient, string adAppId, string adUnitId);
 
         [DllImport("__Internal")]
         internal static extern void ZPLADSetRewardVideoAdCallbacks(
