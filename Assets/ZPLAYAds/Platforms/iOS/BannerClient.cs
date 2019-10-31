@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_IOS
+using System;
 using ZPLAYAds.Common;
 using ZPLAYAds.Api;
 using System.Runtime.InteropServices;
@@ -10,7 +11,7 @@ namespace ZPLAYAds.iOS
         private IntPtr bannerViewPtr;
 
         private IntPtr bannerClientPtr;
-        #region Banner callback types
+#region Banner callback types
 
         internal delegate void AtmosplayBannerDidReceiveAdCallback(IntPtr bannerClient);
 
@@ -19,7 +20,7 @@ namespace ZPLAYAds.iOS
 
         internal delegate void AtmosplayBannerDidClickCallback(IntPtr bannerClient);
 
-        #endregion
+#endregion
 
         // Ad event fired when the banner ad has been received.
         public event EventHandler<EventArgs> OnAdLoaded;
@@ -43,7 +44,7 @@ namespace ZPLAYAds.iOS
             }
         }
 
-        #region IYumiBannerClient implement 
+#region IYumiBannerClient implement 
         // Creates a banner view and adds it to the view hierarchy.
         public void CreateBannerView(string adAppId, string adUnitId, BannerViewOptions options)
         {
@@ -118,9 +119,9 @@ namespace ZPLAYAds.iOS
         {
             Dispose();
         }
-        #endregion
+#endregion
 
-        #region Banner callback methods
+#region Banner callback methods
         [MonoPInvokeCallback(typeof(AtmosplayBannerDidReceiveAdCallback))]
         private static void BannerDidReceiveAdCallback(IntPtr bannerClient)
         {
@@ -161,6 +162,7 @@ namespace ZPLAYAds.iOS
             return handle.Target as BannerClient;
         }
 
-         #endregion
+#endregion
         }
     }
+#endif
