@@ -1,8 +1,9 @@
 <dependencies>
   <androidPackages>
-    <androidPackage spec="com.playableads:playableads:2.4.1">
+    <androidPackage spec="com.playableads:playableads:2.6.0-beta02">
       <repositories>
         <repository>https://jcenter.bintray.com/</repository>
+        <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local</repository>
       </repositories>
     </androidPackage>
   </androidPackages>
