@@ -16,6 +16,12 @@
       - [Request Rewarded Video](#request-rewarded-video)
       - [Determine If Rewarded Video Has Been Loaded](#determine-if-rewarded-video-has-been-loaded)
       - [Present Rewarded Video](#present-rewarded-video)
+    - [Banner](#Banner)
+      - [Initialize Banner](#Initialize-Banner)
+      - [Request Banner](#Request-Banner)
+      - [Hide Banner](#Hide-Banner)
+      - [Show Banner](#Show-Banner)
+      - [Destroy Banner](#Destroy-Banner)
   - [Test](#test)
 
 # ZPLAYAds for Unity
@@ -258,6 +264,87 @@ if(rewardVideo.IsReady(ZPLAYADS_UNIT_ID_REWARD_VIDEO))
   rewardVideo.Show(ZPLAYADS_UNIT_ID_REWARD_VIDEO);
 } 
 ```
+#### Initialize Banner
+```C#
+using ZPLAYAds.Api;
+using ZPLAYAds.Common;
+public class ZPLAYAdsDemoScript : MonoBehaviour
+{
+#if UNITY_ANDROID
+  const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_ANDROID";
+  const string ZPLAYADS_UNIT_ID_BANNER = "YOUR_ZPLAYAds_UNIT_ID_BANNER_ANDROID";
+#elif UNITY_IOS
+  const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_IOS";
+  const string ZPLAYADS_UNIT_ID_BANNER = "YOUR_ZPLAYAds_UNIT_ID_BANNER_IOS";
+#else
+  const string ZPLAYADS_APP_ID = "unexpected_platform";
+  const string ZPLAYADS_UNIT_ID_BANNER = "unexpected_platform";
+#endif
+
+BannerView bannerView;
+
+  void Start() 
+  {
+    BannerViewOptions bannerOptions = new BannerViewOptionsBuilder()
+            .setAdPosition(AdPosition.BOTTOM)
+            .setChannelID(GlobleSettings.GetChannelId)
+            .setBannerSize(BannerAdSize.BANNER_AD_SIZE_320x50)
+            .Build();
+
+    bannerView = new BannerView(ZPLAYADS_APP_ID, ZPLAYADS_UNIT_ID_BANNER, bannerOptions);
+    bannerView.OnAdLoaded += HandleBannerAdLoaded;
+    bannerView.OnAdFailedToLoad += HandleBannerAdFailedToLoad;
+    bannerView.OnAdClicked += HandleBannerClicked;
+  }
+  #region Banner callback handlers
+
+    public void HandleBannerAdLoaded(object sender, EventArgs args)
+    {
+        print("===> HandleBannerAdLoaded event received");
+    }
+
+    public void HandleBannerAdFailedToLoad(object sender, AdFailedEventArgs args)
+    {
+        print("===> HandleBannerAdFailedToLoad event received with message: " + args.Message);
+    }
+
+     public void HandleBannerClicked(object sender, EventArgs args)
+    {
+        print("===> HandleBannerClicked event.");
+    }
+
+    #endregion
+```
+#### Request Banner
+**the ZPLAYAds SDK respects any refresh rate you specified in the ZPLAYAds UI**
+```c#
+if (bannerView != null)
+{
+    bannerView.LoadAd();
+}
+```
+#### Hide Banner
+```c#
+if (bannerView != null)
+{
+    bannerView.Hide();
+}
+```
+#### Show Banner
+```c#
+if (bannerView != null)
+{
+    bannerView.Show();
+}
+```
+#### Destroy Banner
+```c#
+if (bannerView != null)
+{
+    bannerView.Destroy();
+    bannerView = null;
+}
+```
 
 ## Test
 You are available to use the following ID when testing your App (no charge). Please replace them with the ID you applied in ZPLAY Ads when you publish your App.
@@ -266,5 +353,6 @@ You are available to use the following ID when testing your App (no charge). Ple
 | ------- |  --------------- |------------------------------------ | ------------------------------------ |
 | iOS     |Rewarded Video| A650AB0D-7BFC-2A81-3066-D3170947C3DA | BAE5DAAC-04A2-2591-D5B0-38FA846E45E7 |
 | iOS     |Interstitial| A650AB0D-7BFC-2A81-3066-D3170947C3DA | 0868EBC0-7768-40CA-4226-F9924221C8EB  |
+| iOS     |Banner| A650AB0D-7BFC-2A81-3066-D3170947C3DA | xxxxxx-xxx |
 | Android |Rewarded Video|  5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 3FBEFA05-3A8B-2122-24C7-A87D0BC9FEEC |
 | Android |Interstitial|  5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 19393189-C4EB-3886-60B9-13B39407064E |
