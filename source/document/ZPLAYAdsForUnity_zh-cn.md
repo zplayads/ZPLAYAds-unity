@@ -16,6 +16,13 @@
       - [请求Rewarded Video](#%E8%AF%B7%E6%B1%82rewarded-video)
       - [判断Rewarded Video是否准备好](#%E5%88%A4%E6%96%ADrewarded-video%E6%98%AF%E5%90%A6%E5%87%86%E5%A4%87%E5%A5%BD)
       - [展示Rewarded Video](#%E5%B1%95%E7%A4%BArewarded-video)
+    - [Banner](#Banner)
+      - [初始化 Banner](#初始化-Banner)
+      - [请求 Banner](#请求-Banner)
+      - [隐藏 Banner](#隐藏-Banner)
+      - [展示 Banner](#展示-Banner)
+      - [销毁 Banner](#销毁-Banner)
+
   - [测试](#%E6%B5%8B%E8%AF%95)
 
 # ZPLAYAds for Unity
@@ -260,6 +267,88 @@ if(rewardVideo.IsReady(ZPLAYADS_UNIT_ID_REWARD_VIDEO))
   rewardVideo.Show(ZPLAYADS_UNIT_ID_REWARD_VIDEO);
 } 
 ```
+### Banner
+#### 初始化 Banner
+```C#
+using ZPLAYAds.Api;
+using ZPLAYAds.Common;
+public class ZPLAYAdsDemoScript : MonoBehaviour
+{
+#if UNITY_ANDROID
+  const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_ANDROID";
+  const string ZPLAYADS_UNIT_ID_BANNER = "YOUR_ZPLAYAds_UNIT_ID_BANNER_ANDROID";
+#elif UNITY_IOS
+  const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_IOS";
+  const string ZPLAYADS_UNIT_ID_BANNER = "YOUR_ZPLAYAds_UNIT_ID_BANNER_IOS";
+#else
+  const string ZPLAYADS_APP_ID = "unexpected_platform";
+  const string ZPLAYADS_UNIT_ID_BANNER = "unexpected_platform";
+#endif
+
+BannerView bannerView;
+
+  void Start() 
+  {
+    BannerViewOptions bannerOptions = new BannerViewOptionsBuilder()
+            .setAdPosition(AdPosition.BOTTOM)
+            .setChannelID(GlobleSettings.GetChannelId)
+            .setBannerSize(BannerAdSize.BANNER_AD_SIZE_320x50)
+            .Build();
+
+    bannerView = new BannerView(ZPLAYADS_APP_ID, ZPLAYADS_UNIT_ID_BANNER, bannerOptions);
+    bannerView.OnAdLoaded += HandleBannerAdLoaded;
+    bannerView.OnAdFailedToLoad += HandleBannerAdFailedToLoad;
+    bannerView.OnAdClicked += HandleBannerClicked;
+  }
+  #region Banner callback handlers
+
+    public void HandleBannerAdLoaded(object sender, EventArgs args)
+    {
+        print("===> HandleBannerAdLoaded event received");
+    }
+
+    public void HandleBannerAdFailedToLoad(object sender, AdFailedEventArgs args)
+    {
+        print("===> HandleBannerAdFailedToLoad event received with message: " + args.Message);
+    }
+
+     public void HandleBannerClicked(object sender, EventArgs args)
+    {
+        print("===> HandleBannerClicked event.");
+    }
+
+    #endregion
+```
+#### 请求 Banner
+**ZPLAYAds SDK 会遵循您在 ZPLAYAds 界面中指定的 Banner 时长自动刷新下一条 Banner 广告**
+```c#
+if (bannerView != null)
+{
+    bannerView.LoadAd();
+}
+```
+#### 隐藏 Banner
+```c#
+if (bannerView != null)
+{
+    bannerView.Hide();
+}
+```
+#### 展示 Banner
+```c#
+if (bannerView != null)
+{
+    bannerView.Show();
+}
+```
+#### 销毁 Banner
+```c#
+if (bannerView != null)
+{
+    bannerView.Destroy();
+    bannerView = null;
+}
+```
 
 ## 测试
 
@@ -269,5 +358,6 @@ if(rewardVideo.IsReady(ZPLAYADS_UNIT_ID_REWARD_VIDEO))
 | ------- |  --------------- |------------------------------------ | ------------------------------------ |
 | iOS     |激励视频| A650AB0D-7BFC-2A81-3066-D3170947C3DA | BAE5DAAC-04A2-2591-D5B0-38FA846E45E7 |
 | iOS     |插屏| A650AB0D-7BFC-2A81-3066-D3170947C3DA | 0868EBC0-7768-40CA-4226-F9924221C8EB |
+| iOS     |横幅| A650AB0D-7BFC-2A81-3066-D3170947C3DA | xxxxxxx-xxx |
 | Android |激励视频|  5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 3FBEFA05-3A8B-2122-24C7-A87D0BC9FEEC |
 | Android |插屏|  5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 19393189-C4EB-3886-60B9-13B39407064E |
