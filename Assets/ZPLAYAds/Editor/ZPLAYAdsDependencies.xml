@@ -1,9 +1,8 @@
 <dependencies>
   <androidPackages>
-    <androidPackage spec="com.playableads:playableads:2.6.0-beta02">
+    <androidPackage spec="com.playableads:playableads:2.6.0">
       <repositories>
         <repository>https://jcenter.bintray.com/</repository>
-        <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local</repository>
       </repositories>
     </androidPackage>
   </androidPackages>
@@ -11,7 +10,7 @@
   <iosPods>
     <iosPod name="PlayableAds" version="~> 2.6.0">
       <sources>
-        <source>https://github.com/yumimobi/Specs</source>
+        <source>https://github.com/CocoaPods/Specs</source>
       </sources>
     </iosPod>
   </iosPods>
