@@ -27,5 +27,15 @@ namespace ZPLAYAds
             return new Common.DummyClient();
 #endif
         }
+        public static IBannerClient BuildBannerClient()
+        {
+#if UNITY_ANDROID
+            return new Android.BannerClient();
+#elif UNITY_IPHONE
+            return new iOS.BannerClient();
+#else
+            return new Common.DummyClient();
+#endif
+        }
     }
 }

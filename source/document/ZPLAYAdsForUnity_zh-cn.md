@@ -1,21 +1,29 @@
 - [ZPLAYAds for Unity](#zplayads-for-unity)
-  - [概述](#%E6%A6%82%E8%BF%B0)
-  - [下载ZPLAYAds Unity插件](#%E4%B8%8B%E8%BD%BDzplayads-unity%E6%8F%92%E4%BB%B6)
-  - [导入ZPLAYAds Unity插件](#%E5%AF%BC%E5%85%A5zplayads-unity%E6%8F%92%E4%BB%B6)
-  - [集成ZPLAYAds](#%E9%9B%86%E6%88%90zplayads)
-    - [部署iOS项目](#%E9%83%A8%E7%BD%B2ios%E9%A1%B9%E7%9B%AE)
-    - [部署Android项目](#%E9%83%A8%E7%BD%B2android%E9%A1%B9%E7%9B%AE)
-  - [选择广告形式](#%E9%80%89%E6%8B%A9%E5%B9%BF%E5%91%8A%E5%BD%A2%E5%BC%8F)
+  - [概述](#%e6%a6%82%e8%bf%b0)
+  - [下载ZPLAYAds Unity插件](#%e4%b8%8b%e8%bd%bdzplayads-unity%e6%8f%92%e4%bb%b6)
+  - [导入ZPLAYAds Unity插件](#%e5%af%bc%e5%85%a5zplayads-unity%e6%8f%92%e4%bb%b6)
+  - [集成ZPLAYAds](#%e9%9b%86%e6%88%90zplayads)
+    - [部署iOS项目](#%e9%83%a8%e7%bd%b2ios%e9%a1%b9%e7%9b%ae)
+    - [部署Android项目](#%e9%83%a8%e7%bd%b2android%e9%a1%b9%e7%9b%ae)
+  - [选择广告形式](#%e9%80%89%e6%8b%a9%e5%b9%bf%e5%91%8a%e5%bd%a2%e5%bc%8f)
     - [Interstitial](#interstitial)
-      - [初始化及请求插屏](#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%8A%E8%AF%B7%E6%B1%82%E6%8F%92%E5%B1%8F)
-      - [请求Interstitial](#%E8%AF%B7%E6%B1%82interstitial)
-      - [判断Interstitial是否准备好](#%E5%88%A4%E6%96%ADinterstitial%E6%98%AF%E5%90%A6%E5%87%86%E5%A4%87%E5%A5%BD)
-      - [展示Interstitial](#%E5%B1%95%E7%A4%BAinterstitial)
+      - [初始化及请求插屏](#%e5%88%9d%e5%a7%8b%e5%8c%96%e5%8f%8a%e8%af%b7%e6%b1%82%e6%8f%92%e5%b1%8f)
+      - [请求Interstitial](#%e8%af%b7%e6%b1%82interstitial)
+      - [判断Interstitial是否准备好](#%e5%88%a4%e6%96%adinterstitial%e6%98%af%e5%90%a6%e5%87%86%e5%a4%87%e5%a5%bd)
+      - [展示Interstitial](#%e5%b1%95%e7%a4%bainterstitial)
     - [Rewarded Video](#rewarded-video)
-      - [初始化及请求视频](#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%8A%E8%AF%B7%E6%B1%82%E8%A7%86%E9%A2%91)
-      - [请求Rewarded Video](#%E8%AF%B7%E6%B1%82rewarded-video)
-      - [判断Rewarded Video是否准备好](#%E5%88%A4%E6%96%ADrewarded-video%E6%98%AF%E5%90%A6%E5%87%86%E5%A4%87%E5%A5%BD)
-      - [展示Rewarded Video](#%E5%B1%95%E7%A4%BArewarded-video)
+      - [初始化及请求视频](#%e5%88%9d%e5%a7%8b%e5%8c%96%e5%8f%8a%e8%af%b7%e6%b1%82%e8%a7%86%e9%a2%91)
+      - [请求Rewarded Video](#%e8%af%b7%e6%b1%82rewarded-video)
+      - [判断Rewarded Video是否准备好](#%e5%88%a4%e6%96%adrewarded-video%e6%98%af%e5%90%a6%e5%87%86%e5%a4%87%e5%a5%bd)
+      - [展示Rewarded Video](#%e5%b1%95%e7%a4%barewarded-video)
+    - [Banner](#banner)
+      - [初始化 Banner](#%e5%88%9d%e5%a7%8b%e5%8c%96-banner)
+      - [请求 Banner](#%e8%af%b7%e6%b1%82-banner)
+      - [隐藏 Banner](#%e9%9a%90%e8%97%8f-banner)
+      - [展示 Banner](#%e5%b1%95%e7%a4%ba-banner)
+      - [销毁 Banner](#%e9%94%80%e6%af%81-banner)
+  - [测试](#%e6%b5%8b%e8%af%95)
+
   - [测试](#%E6%B5%8B%E8%AF%95)
 
 # ZPLAYAds for Unity
@@ -260,14 +268,98 @@ if(rewardVideo.IsReady(ZPLAYADS_UNIT_ID_REWARD_VIDEO))
   rewardVideo.Show(ZPLAYADS_UNIT_ID_REWARD_VIDEO);
 } 
 ```
+### Banner
+#### 初始化 Banner
+```C#
+using ZPLAYAds.Api;
+using ZPLAYAds.Common;
+public class ZPLAYAdsDemoScript : MonoBehaviour
+{
+#if UNITY_ANDROID
+  const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_ANDROID";
+  const string ZPLAYADS_UNIT_ID_BANNER = "YOUR_ZPLAYAds_UNIT_ID_BANNER_ANDROID";
+#elif UNITY_IOS
+  const string ZPLAYADS_APP_ID = "YOUR_ZPLAYAds_APP_ID_IOS";
+  const string ZPLAYADS_UNIT_ID_BANNER = "YOUR_ZPLAYAds_UNIT_ID_BANNER_IOS";
+#else
+  const string ZPLAYADS_APP_ID = "unexpected_platform";
+  const string ZPLAYADS_UNIT_ID_BANNER = "unexpected_platform";
+#endif
+
+BannerView bannerView;
+
+  void Start() 
+  {
+    BannerViewOptions bannerOptions = new BannerViewOptionsBuilder()
+            .setAdPosition(AdPosition.BOTTOM)
+            .setChannelID(GlobleSettings.GetChannelId)
+            .setBannerSize(BannerAdSize.BANNER_AD_SIZE_320x50)
+            .Build();
+
+    bannerView = new BannerView(ZPLAYADS_APP_ID, ZPLAYADS_UNIT_ID_BANNER, bannerOptions);
+    bannerView.OnAdLoaded += HandleBannerAdLoaded;
+    bannerView.OnAdFailedToLoad += HandleBannerAdFailedToLoad;
+    bannerView.OnAdClicked += HandleBannerClicked;
+  }
+  #region Banner callback handlers
+
+    public void HandleBannerAdLoaded(object sender, EventArgs args)
+    {
+        print("===> HandleBannerAdLoaded event received");
+    }
+
+    public void HandleBannerAdFailedToLoad(object sender, AdFailedEventArgs args)
+    {
+        print("===> HandleBannerAdFailedToLoad event received with message: " + args.Message);
+    }
+
+     public void HandleBannerClicked(object sender, EventArgs args)
+    {
+        print("===> HandleBannerClicked event.");
+    }
+
+    #endregion
+```
+#### 请求 Banner
+**ZPLAYAds SDK 会遵循您在 ZPLAYAds 界面中指定的 Banner 时长自动刷新下一条 Banner 广告**
+```c#
+if (bannerView != null)
+{
+    bannerView.LoadAd();
+}
+```
+#### 隐藏 Banner
+```c#
+if (bannerView != null)
+{
+    bannerView.Hide();
+}
+```
+#### 展示 Banner
+```c#
+if (bannerView != null)
+{
+    bannerView.Show();
+}
+```
+#### 销毁 Banner
+```c#
+if (bannerView != null)
+{
+    bannerView.Destroy();
+    bannerView = null;
+}
+```
 
 ## 测试
 
 您在测试中可使用如下ID进行测试，测试ID不会产生收益，应用上线时请使用您申请的正式ID。
 
-| 操作系统      | 广告形式 | App_ID                               | Ad_Unit_ID                           |
-| ------- |  --------------- |------------------------------------ | ------------------------------------ |
-| iOS     |激励视频| A650AB0D-7BFC-2A81-3066-D3170947C3DA | BAE5DAAC-04A2-2591-D5B0-38FA846E45E7 |
-| iOS     |插屏| A650AB0D-7BFC-2A81-3066-D3170947C3DA | 0868EBC0-7768-40CA-4226-F9924221C8EB |
-| Android |激励视频|  5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 3FBEFA05-3A8B-2122-24C7-A87D0BC9FEEC |
-| Android |插屏|  5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 19393189-C4EB-3886-60B9-13B39407064E |
+| 操作系统 | 广告形式 | App_ID                               | Ad_Unit_ID                           |
+| -------- | -------- | ------------------------------------ | ------------------------------------ |
+| iOS      | Banner   | A650AB0D-7BFC-2A81-3066-D3170947C3DA | A49521F3-339D-994F-FC80-F9C4170AA0CF |
+| iOS      | 激励视频 | A650AB0D-7BFC-2A81-3066-D3170947C3DA | BAE5DAAC-04A2-2591-D5B0-38FA846E45E7 |
+| iOS      | 插屏     | A650AB0D-7BFC-2A81-3066-D3170947C3DA | 0868EBC0-7768-40CA-4226-F9924221C8EB |
+| Android  | Banner   | 5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | F22F347B-3D57-0C70-0B13-EFCFDF402EBA |
+| Android  | 激励视频 | 5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 3FBEFA05-3A8B-2122-24C7-A87D0BC9FEEC |
+| Android  | 插屏     | 5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 19393189-C4EB-3886-60B9-13B39407064E |

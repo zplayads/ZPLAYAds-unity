@@ -1,5 +1,4 @@
 using System;
-
 using ZPLAYAds.Common;
 
 namespace ZPLAYAds.Api
