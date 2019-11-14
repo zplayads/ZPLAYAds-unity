@@ -16,12 +16,11 @@
       - [Request Rewarded Video](#request-rewarded-video)
       - [Determine If Rewarded Video Has Been Loaded](#determine-if-rewarded-video-has-been-loaded)
       - [Present Rewarded Video](#present-rewarded-video)
-    - [Banner](#Banner)
-      - [Initialize Banner](#Initialize-Banner)
-      - [Request Banner](#Request-Banner)
-      - [Hide Banner](#Hide-Banner)
-      - [Show Banner](#Show-Banner)
-      - [Destroy Banner](#Destroy-Banner)
+      - [Initialize Banner](#initialize-banner)
+      - [Request Banner](#request-banner)
+      - [Hide Banner](#hide-banner)
+      - [Show Banner](#show-banner)
+      - [Destroy Banner](#destroy-banner)
   - [Test](#test)
 
 # ZPLAYAds for Unity
@@ -349,10 +348,11 @@ if (bannerView != null)
 ## Test
 You are available to use the following ID when testing your App (no charge). Please replace them with the ID you applied in ZPLAY Ads when you publish your App.
 
-| OS      | Format | App_ID                               | Ad_Unit_ID                           |
-| ------- |  --------------- |------------------------------------ | ------------------------------------ |
-| iOS     |Rewarded Video| A650AB0D-7BFC-2A81-3066-D3170947C3DA | BAE5DAAC-04A2-2591-D5B0-38FA846E45E7 |
-| iOS     |Interstitial| A650AB0D-7BFC-2A81-3066-D3170947C3DA | 0868EBC0-7768-40CA-4226-F9924221C8EB  |
-| iOS     |Banner| A650AB0D-7BFC-2A81-3066-D3170947C3DA | xxxxxx-xxx |
-| Android |Rewarded Video|  5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 3FBEFA05-3A8B-2122-24C7-A87D0BC9FEEC |
-| Android |Interstitial|  5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 19393189-C4EB-3886-60B9-13B39407064E |
+| OS      | Format         | App_ID                               | Ad_Unit_ID                           |
+| ------- | -------------- | ------------------------------------ | ------------------------------------ |
+| iOS     | Banner         | A650AB0D-7BFC-2A81-3066-D3170947C3DA | A49521F3-339D-994F-FC80-F9C4170AA0CF |
+| iOS     | Rewarded Video | A650AB0D-7BFC-2A81-3066-D3170947C3DA | BAE5DAAC-04A2-2591-D5B0-38FA846E45E7 |
+| iOS     | Interstitial   | A650AB0D-7BFC-2A81-3066-D3170947C3DA | 0868EBC0-7768-40CA-4226-F9924221C8EB |
+| Android | Banner         | 5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | F22F347B-3D57-0C70-0B13-EFCFDF402EBA |
+| Android | Rewarded Video | 5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 3FBEFA05-3A8B-2122-24C7-A87D0BC9FEEC |
+| Android | Interstitial   | 5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 19393189-C4EB-3886-60B9-13B39407064E |

@@ -1,6 +1,6 @@
 <dependencies>
   <packages>
-    <package>com.playableads:playableads:2.6.0-beta02</package>
+    <package>com.playableads:playableads:2.6.0</package>
   </packages>
   <files />
   <settings>
